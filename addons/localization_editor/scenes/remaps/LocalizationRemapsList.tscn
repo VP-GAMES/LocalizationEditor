@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsList.gd" type="Script" id=1]
+[ext_resource path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsHead.tscn" type="PackedScene" id=2]
+
+[node name="RemapsVBox" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Separator" type="VSeparator" parent="."]
+margin_right = 4.0
+margin_bottom = 600.0
+
+[node name="VBox" type="VBoxContainer" parent="."]
+margin_left = 8.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Head" parent="VBox" instance=ExtResource( 2 )]
+margin_right = 1016.0
+
+[node name="Scroll" type="ScrollContainer" parent="VBox"]
+margin_top = 61.0
+margin_right = 1016.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RemapsList" type="VBoxContainer" parent="VBox/Scroll"]
+margin_right = 1016.0
+margin_bottom = 539.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

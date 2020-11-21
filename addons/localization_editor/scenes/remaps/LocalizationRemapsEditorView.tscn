@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsEditorView.gd" type="Script" id=1]
+[ext_resource path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsKeys.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/localization_editor/scenes/remaps/LocalizationRemaps.tscn" type="PackedScene" id=3]
+
+[node name="Remaps" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Split" type="HSplitContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offset = -442
+dragger_visibility = 1
+
+[node name="Keys" parent="Split" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 64.0
+margin_bottom = 600.0
+
+[node name="Remaps" parent="Split" instance=ExtResource( 3 )]
+margin_left = 76.0

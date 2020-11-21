@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/localization_editor/scenes/locales/LocalizationLocale.gd" type="Script" id=2]
+
+[node name="Locale" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 3
+custom_constants/margin_top = 3
+custom_constants/margin_left = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBox" type="HBoxContainer" parent="."]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 1021.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+
+[node name="Selection" type="CheckBox" parent="HBox"]
+margin_right = 80.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 80, 0 )
+hint_tooltip = "Select language for translation"
+size_flags_vertical = 0
+text = "en"
+
+[node name="Locale" type="Label" parent="HBox"]
+margin_left = 84.0
+margin_right = 994.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "English"
+valign = 1
+
+[node name="Eye" type="TextureButton" parent="HBox"]
+margin_left = 998.0
+margin_right = 1018.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 0
+toggle_mode = true

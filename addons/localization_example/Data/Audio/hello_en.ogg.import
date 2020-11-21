@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hello_en.ogg-db9d614940f0a3403f9198e1afbf7640.oggstr"
+
+[deps]
+
+source_file="res://addons/localization_example/Data/Audio/hello_en.ogg"
+dest_files=[ "res://.import/hello_en.ogg-db9d614940f0a3403f9198e1afbf7640.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

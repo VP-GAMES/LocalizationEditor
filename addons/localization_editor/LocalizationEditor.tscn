@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://addons/localization_editor/LocalizationEditor.gd" type="Script" id=1]
+[ext_resource path="res://addons/localization_editor/scenes/locales/LocalizationLocalesEditorView.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/localization_editor/scenes/translations/LocalizationTranslationsEditorView.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsEditorView.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/localization_editor/icons/File.png" type="Texture" id=5]
+[ext_resource path="res://addons/localization_editor/icons/Save.png" type="Texture" id=6]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="VBox"]
+margin_right = 1024.0
+margin_bottom = 26.0
+custom_constants/margin_right = 3
+custom_constants/margin_top = 3
+custom_constants/margin_left = 3
+custom_constants/margin_bottom = 3
+
+[node name="HBox" type="HBoxContainer" parent="VBox/Margin"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 1021.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+
+[node name="Save" type="Button" parent="VBox/Margin/HBox"]
+margin_right = 22.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+icon = ExtResource( 6 )
+
+[node name="Open" type="Button" parent="VBox/Margin/HBox"]
+margin_left = 26.0
+margin_right = 48.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+icon = ExtResource( 5 )
+
+[node name="File" type="Label" parent="VBox/Margin/HBox"]
+margin_left = 52.0
+margin_top = 3.0
+margin_right = 1018.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Path:"
+align = 1
+
+[node name="Tabs" type="TabContainer" parent="VBox"]
+margin_top = 30.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tab_align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Translations" parent="VBox/Tabs" instance=ExtResource( 3 )]
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Remaps" parent="VBox/Tabs" instance=ExtResource( 4 )]
+visible = false
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Locales" parent="VBox/Tabs" instance=ExtResource( 2 )]
+visible = false
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0

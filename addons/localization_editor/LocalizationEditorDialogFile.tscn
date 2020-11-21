@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="LocalizationEditorDialogFile" type="FileDialog"]
+margin_right = 600.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 600, 300 )
+filters = PoolStringArray( "*.csv" )

@@ -1,0 +1,52 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Resource",
+"class": "LocalizationData",
+"language": "GDScript",
+"path": "res://addons/localization_editor/model/LocalizationData.gd"
+} ]
+_global_script_class_icons={
+"LocalizationData": ""
+}
+translations=PoolStringArray( "res://localization/localizations.en.translation", "res://localization/localizations.de.translation", "res://localization/localizations.ru.translation" )
+
+[application]
+
+config/name="LocalizationEditor"
+run/main_scene="res://addons/localization_example/Main.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+LocalizationManager="res://addons/localization_editor/LocalizationManager.gd"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "localization_editor" )
+
+[locale]
+
+translation_remaps={
+"res://addons/localization_example/Data/Audio/hello_en.ogg": [ "res://addons/localization_example/Data/Audio/hello_de.ogg:de", "res://addons/localization_example/Data/Audio/hello_ru.ogg:ru" ],
+"res://addons/localization_example/Data/Images/play_en.png": [ "res://addons/localization_example/Data/Images/play_de.png:de", "res://addons/localization_example/Data/Images/play_ru.png:ru" ],
+"res://addons/localization_example/Data/Video/video_en.webm": [ "res://addons/localization_example/Data/Video/video_de.webm:de", "res://addons/localization_example/Data/Video/video_ru.webm:ru" ]
+}
+translations=PoolStringArray( "res://localization/localizations.en.translation", "res://localization/localizations.de.translation", "res://localization/localizations.ru.translation" )
+
+[localization_editor]
+
+locale_invisible=[  ]
+locales_visibility=[ "af" ]
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
