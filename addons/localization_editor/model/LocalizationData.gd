@@ -123,7 +123,7 @@ func add_locale(locale: String, sendSignal = true) -> void:
 	if not data.locales.has(locale):
 		if _undo_redo != null:
 			_undo_redo.create_action("Add locale " + locale)
-			_undo_redo.add_do_method(self, "_add_locale", locale)
+			_undo_redo.add_do_method(self, "_add_locale", locale, sendSignal)
 			_undo_redo.add_undo_method(self, "_del_locale", locale)
 			_undo_redo.commit_action()
 		else:
@@ -134,10 +134,13 @@ func _add_locale(locale, sendSignal: bool) -> void:
 	if data.keys.empty():
 		_add_key(uuid())
 	for key in data.keys:
-		if not key_has_locale(locale):
+		if not key_has_locale(key, locale):
 			key.translations.append({"locale": locale, "value": ""})
 	if data_remaps.remapkeys.empty():
 		_add_remapkey(uuid())
+	for remapkey in data_remaps.remapkeys:
+		if remapkey_has_locale(remapkey, locale):
+			remapkey.remaps.append({"locale": locale, "value": ""})
 	if sendSignal:
 		emit_signal("data_changed")
 
@@ -288,11 +291,10 @@ func _key_position(uuid: String) -> int:
 			return index
 	return -1
 
-func key_has_locale(locale: String) -> bool:
-	for key in data.keys:
-		for translation in key.translations:
-			if translation.locale == locale:
-				return true
+func key_has_locale(key, locale: String) -> bool:
+	for translation in key.translations:
+		if translation.locale == locale:
+			return true
 	return false
 
 func key_value(uuid: String):
@@ -529,6 +531,12 @@ func _remapkey_position(uuid: String) -> int:
 		if data_remaps.remapkeys[index].uuid == uuid:
 			return index
 	return -1
+
+func remapkey_has_locale(remapkey, locale: String) -> bool:
+	for remap in remapkey.remaps:
+		if remap.locale == locale:
+			return true
+	return false
 
 func remapkey_value(uuid: String):
 	var remapkey = remapkey(uuid)

@@ -45,7 +45,7 @@ translations=PoolStringArray( "res://localization/localizations.en.translation",
 [localization_editor]
 
 locale_invisible=[  ]
-locales_visibility=[ "af" ]
+locales_visibility=[  ]
 
 [rendering]
 
