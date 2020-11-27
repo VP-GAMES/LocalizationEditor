@@ -65,6 +65,12 @@ func save_data_translations() -> void:
 	_save_data_translations_to_project_settings()
 
 func _save_data_translations_csv() -> void:
+	var directory = Directory.new()
+	var path = setting_path_to_file()
+	var path_directory = file_path(path)
+	if not directory.dir_exists(path_directory):
+		directory.make_dir(path_directory)
+		_editor.get_editor_interface().get_resource_filesystem().scan()
 	var file = File.new()
 	file.open(setting_path_to_file(), File.WRITE)
 	var locales_line: PoolStringArray = ["keys"]
