@@ -19,6 +19,9 @@ Edit translations
 Edit remaps
 ![Remaps editor](https://raw.githubusercontent.com/VP-GAMES/LocalizationEditor/main/.github/images/remaps.png)
 
+Auto translation(Google Translator)
+![Remaps editor](https://raw.githubusercontent.com/VP-GAMES/LocalizationEditor/main/.github/images/autotranslate.png)
+
 How to install
 -----------------
 
