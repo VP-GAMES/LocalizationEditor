@@ -35,6 +35,9 @@ func editor() -> EditorPlugin:
 func undo_redo() -> UndoRedo:
 	return _undo_redo
 
+func emit_signal_data_changed() -> void: 
+	emit_signal("data_changed")
+
 func init_data_translations() -> void:
 	_init_data_translations_csv()
 
@@ -116,7 +119,7 @@ func find_locale(code: String):
 				return locale
 	return null
 
-func add_locale(locale: String) -> void:
+func add_locale(locale: String, sendSignal = true) -> void:
 	if not data.locales.has(locale):
 		if _undo_redo != null:
 			_undo_redo.create_action("Add locale " + locale)
@@ -124,9 +127,9 @@ func add_locale(locale: String) -> void:
 			_undo_redo.add_undo_method(self, "_del_locale", locale)
 			_undo_redo.commit_action()
 		else:
-			_add_locale(locale)
+			_add_locale(locale, sendSignal)
 
-func _add_locale(locale) -> void:
+func _add_locale(locale, sendSignal: bool) -> void:
 	data.locales.append(locale)
 	if data.keys.empty():
 		_add_key(uuid())
@@ -135,7 +138,8 @@ func _add_locale(locale) -> void:
 			key.translations.append({"locale": locale, "value": ""})
 	if data_remaps.remapkeys.empty():
 		_add_remapkey(uuid())
-	emit_signal("data_changed")
+	if sendSignal:
+		emit_signal("data_changed")
 
 func del_locale(locale: String) -> void:
 	if data.locales.has(locale):
@@ -190,17 +194,22 @@ func _filter_by_keys() -> Array:
 func _key_filter_by_translations(keys, locale) -> Array:
 	var new_keys = []
 	for key in keys:
-		var value = _translation_value_by_locale(key, locale)
+		var value = translation_value_by_locale(key, locale)
 		if data_filter[locale] == "" or value == null or value == ""  or data_filter[locale] in value:
 			new_keys.append(key)
 	return new_keys
 
-func _translation_value_by_locale(key, locale):
+func translation_value_by_locale(key, locale) -> String:
+	var translation = translation_by_locale(key, locale)
+	if translation != null and translation.value != null:
+		return translation.value 
+	return ""
+
+func translation_by_locale(key, locale):
 	for translation in key.translations:
 		if translation.locale == locale:
-			if translation.value != null:
-				return translation.value 
-	return ""
+			return translation 
+	return null
 
 func add_key_object(key) -> void:
 	data.keys.append(key)

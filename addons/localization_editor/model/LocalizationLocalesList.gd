@@ -370,8 +370,13 @@ const LOCALES: = [
 ]
 
 static func label_by_code(code: String) -> String:
-	var locales = LOCALES
-	for locale in locales:
+	for locale in LOCALES:
 		if locale.code == code:
 			return locale.code + " " + locale.name
 	return ""
+
+static func has_code(code: String) -> bool:
+	for locale in LOCALES:
+		if locale.code == code:
+			return true
+	return false

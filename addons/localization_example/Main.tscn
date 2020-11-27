@@ -168,6 +168,9 @@ anchor_left = 0.05
 anchor_top = 0.15
 anchor_right = 0.95
 anchor_bottom = 0.3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ButtonBack" type="Button" parent="Languages"]
 anchor_left = 0.05

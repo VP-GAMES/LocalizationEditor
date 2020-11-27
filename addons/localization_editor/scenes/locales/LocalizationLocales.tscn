@@ -8,20 +8,16 @@ margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 7
 custom_constants/margin_top = 7
-custom_constants/margin_left = 7
-custom_constants/margin_bottom = 7
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Panel" type="Panel" parent="."]
-margin_left = 7.0
 margin_top = 7.0
-margin_right = 1017.0
-margin_bottom = 551.0
+margin_right = 1024.0
+margin_bottom = 558.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -35,8 +31,8 @@ __meta__ = {
 }
 
 [node name="VBox" type="VBoxContainer" parent="Panel/Scroll"]
-margin_right = 1010.0
-margin_bottom = 544.0
+margin_right = 1024.0
+margin_bottom = 551.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {

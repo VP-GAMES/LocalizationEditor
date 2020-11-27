@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://addons/localization_editor/LocalizationEditor.gd" type="Script" id=1]
 [ext_resource path="res://addons/localization_editor/scenes/locales/LocalizationLocalesEditorView.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsEditorView.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/localization_editor/icons/File.png" type="Texture" id=5]
 [ext_resource path="res://addons/localization_editor/icons/Save.png" type="Texture" id=6]
+[ext_resource path="res://addons/localization_editor/scenes/auto_translate/LocalizationAutoTranslateEditorView.tscn" type="PackedScene" id=7]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -86,6 +87,13 @@ margin_right = -4.0
 margin_bottom = -4.0
 
 [node name="Locales" parent="VBox/Tabs" instance=ExtResource( 2 )]
+visible = false
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="AutoTranslate" parent="VBox/Tabs" instance=ExtResource( 7 )]
 visible = false
 margin_left = 4.0
 margin_top = 32.0

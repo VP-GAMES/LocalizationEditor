@@ -6,31 +6,25 @@
 margin_right = 1024.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
-custom_constants/margin_right = 7
-custom_constants/margin_top = 7
-custom_constants/margin_left = 7
-custom_constants/margin_bottom = 7
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBox" type="HBoxContainer" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1017.0
-margin_bottom = 31.0
+margin_right = 1024.0
+margin_bottom = 38.0
 
 [node name="Filter" type="LineEdit" parent="HBox"]
-margin_right = 923.0
-margin_bottom = 24.0
+margin_right = 937.0
+margin_bottom = 38.0
 hint_tooltip = "Enter text to filter locales"
 size_flags_horizontal = 3
 placeholder_text = "Filter"
 
 [node name="Selected" type="CheckBox" parent="HBox"]
-margin_left = 927.0
-margin_right = 1010.0
-margin_bottom = 24.0
+margin_left = 941.0
+margin_right = 1024.0
+margin_bottom = 38.0
 hint_tooltip = "Check to view only selected locales"
 text = "Selected"

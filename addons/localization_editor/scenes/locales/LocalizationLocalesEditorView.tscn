@@ -15,5 +15,7 @@ __meta__ = {
 }
 
 [node name="Filter" parent="." instance=ExtResource( 2 )]
+margin_bottom = 24.0
 
 [node name="Locales" parent="." instance=ExtResource( 3 )]
+margin_top = 28.0

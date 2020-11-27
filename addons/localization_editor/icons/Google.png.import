@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Video.png-461a40bd4470d4ea93a92fb9f5a1de07.stex"
+path="res://.import/Google.png-4a13485f7f5c818bffe254e6bc18a986.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/localization_editor/icons/Video.png"
-dest_files=[ "res://.import/Video.png-461a40bd4470d4ea93a92fb9f5a1de07.stex" ]
+source_file="res://addons/localization_editor/icons/Google.png"
+dest_files=[ "res://.import/Google.png-4a13485f7f5c818bffe254e6bc18a986.stex" ]
 
 [params]
 

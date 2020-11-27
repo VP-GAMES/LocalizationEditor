@@ -12,6 +12,7 @@ onready var _file_ui = $VBox/Margin/HBox/File
 onready var _locales_ui = $VBox/Tabs/Locales
 onready var _remaps_ui = $VBox/Tabs/Remaps
 onready var _translations_ui = $VBox/Tabs/Translations
+onready var _auto_translate_ui = $VBox/Tabs/AutoTranslate
 
 const LocalizationEditorDialogFile = preload("res://addons/localization_editor/LocalizationEditorDialogFile.tscn")
 
@@ -36,6 +37,7 @@ func _data_to_childs() -> void:
 	_translations_ui.set_data(_data)
 	_remaps_ui.set_data(_data)
 	_locales_ui.set_data(_data)
+	_auto_translate_ui.set_data(_data)
 
 func _update_view() -> void:
 	_file_ui.text = _data.setting_path_to_file()

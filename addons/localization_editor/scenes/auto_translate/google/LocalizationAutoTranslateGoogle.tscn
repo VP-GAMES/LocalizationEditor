@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/localization_editor/scenes/auto_translate/google/LocalizationAutoTranslateGoogle.gd" type="Script" id=1]
+[ext_resource path="res://addons/localization_editor/icons/Google.png" type="Texture" id=2]
+
+[node name="LocalizationAutotranslateGoogle" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.0
+margin_bottom = -1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="TextureRect" parent="Panel/VBox"]
+margin_right = 1024.0
+margin_bottom = 53.0
+texture = ExtResource( 2 )
+
+[node name="HBox" type="HBoxContainer" parent="Panel/VBox"]
+margin_top = 57.0
+margin_right = 1024.0
+margin_bottom = 77.0
+
+[node name="From" type="Label" parent="Panel/VBox/HBox"]
+margin_top = 3.0
+margin_right = 50.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 50, 0 )
+text = "From:"
+
+[node name="FromLanguage" type="OptionButton" parent="Panel/VBox/HBox"]
+margin_left = 54.0
+margin_right = 174.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 120, 0 )
+
+[node name="To" type="Label" parent="Panel/VBox/HBox"]
+margin_left = 178.0
+margin_top = 3.0
+margin_right = 197.0
+margin_bottom = 17.0
+text = "To:"
+
+[node name="ToLanguage" type="OptionButton" parent="Panel/VBox/HBox"]
+margin_left = 201.0
+margin_right = 321.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 120, 0 )
+
+[node name="Translate" type="Button" parent="Panel/VBox/HBox"]
+margin_left = 325.0
+margin_right = 395.0
+margin_bottom = 20.0
+text = "Translate"
+
+[node name="Progress" type="ProgressBar" parent="Panel/VBox"]
+margin_top = 81.0
+margin_right = 1024.0
+margin_bottom = 95.0
