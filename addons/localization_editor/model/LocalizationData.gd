@@ -139,7 +139,7 @@ func _add_locale(locale, sendSignal: bool) -> void:
 	if data_remaps.remapkeys.empty():
 		_add_remapkey(uuid())
 	for remapkey in data_remaps.remapkeys:
-		if remapkey_has_locale(remapkey, locale):
+		if not remapkey_has_locale(remapkey, locale):
 			remapkey.remaps.append({"locale": locale, "value": ""})
 	if sendSignal:
 		emit_signal("data_changed")
@@ -385,7 +385,7 @@ func init_data_remaps() -> void:
 	var keys = settings_remaps.keys();
 	for key in keys:
 		var remaps = []
-		var first_locale = data.locales[0] if data.locales.size() > 0 else "en"
+		var first_locale = data.locales[0] if data.locales.size() > 0 else TranslationServer.get_locale()
 		check_locale(first_locale)
 		remaps.append({"locale": first_locale , "value": key })
 		for remap in settings_remaps[key]:
@@ -396,6 +396,13 @@ func init_data_remaps() -> void:
 			var remap_new = {"locale": locale, "value": value }
 			remaps.append(remap_new)
 		data_remaps.remapkeys.append({"uuid": uuid(), "remaps": remaps})
+		_check_remapkeys()
+
+func _check_remapkeys() -> void:
+	for locale in locales():
+		for remapkey in data_remaps.remapkeys:
+			if not remapkey_has_locale(remapkey, locale):
+				remapkey.remaps.append({"locale": locale, "value": ""})
 
 func save_data_remaps() -> void:
 	var remaps = {}
