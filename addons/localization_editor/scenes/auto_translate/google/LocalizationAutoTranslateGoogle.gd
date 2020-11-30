@@ -30,12 +30,14 @@ func _update_view() -> void:
 
 func _init_from_language_ui() -> void:
 	_from_language_ui.clear()
+	_from_language_ui.connect("selection_changed", self, "_check_translate_ui")
 	for locale in _data.locales():
 		var from_language_label = Locales.label_by_code(locale)
 		_from_language_ui.add_item(from_language_label)
 
 func _init_to_language_ui() -> void:
 	_to_language_ui.clear()
+	_to_language_ui.connect("selection_changed", self, "_check_translate_ui")
 	_locales_google.clear()
 	for locale in GoogleLocales.LOCALES:
 		if Locales.has_code(locale.code):
@@ -43,6 +45,8 @@ func _init_to_language_ui() -> void:
 			var to_language_label = GoogleLocales.label_by_code(locale.code)
 			_to_language_ui.add_item(to_language_label)
 
+func _check_translate_ui() -> void:
+	_translate_ui.set_disabled(_from_language_ui.selected == -1 or _to_language_ui.selected == -1)
 
 func _on_translate_pressed() -> void:
 	var from_language_code = _data.locales()[_from_language_ui.selected]
