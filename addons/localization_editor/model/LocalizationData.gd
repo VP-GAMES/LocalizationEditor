@@ -387,22 +387,26 @@ func remaps_keys_filtered() -> Array:
 
 func init_data_remaps() -> void:
 	data_remaps.remapkeys = []
-	var settings_remaps = ProjectSettings.get_setting("locale/translation_remaps")
-	var keys = settings_remaps.keys();
-	for key in keys:
-		var remaps = []
-		var first_locale = data.locales[0] if data.locales.size() > 0 else TranslationServer.get_locale()
-		check_locale(first_locale)
-		remaps.append({"locale": first_locale , "value": key })
-		for remap in settings_remaps[key]:
-			var index = remap.find_last(":")
-			var locale  = remap.substr(index + 1)
-			check_locale(locale)
-			var value = remap.substr(0, index)
-			var remap_new = {"locale": locale, "value": value }
-			remaps.append(remap_new)
-		data_remaps.remapkeys.append({"uuid": uuid(), "remaps": remaps})
+	if ProjectSettings.has_setting("locale/translation_remaps"):
+		var settings_remaps = ProjectSettings.get_setting("locale/translation_remaps")
+		var keys = settings_remaps.keys();
+		for key in keys:
+			var remaps = []
+			var first_locale = data.locales[0] if data.locales.size() > 0 else TranslationServer.get_locale()
+			check_locale(first_locale)
+			remaps.append({"locale": first_locale , "value": key })
+			for remap in settings_remaps[key]:
+				var index = remap.find_last(":")
+				var locale  = remap.substr(index + 1)
+				check_locale(locale)
+				var value = remap.substr(0, index)
+				var remap_new = {"locale": locale, "value": value }
+				remaps.append(remap_new)
+			data_remaps.remapkeys.append({"uuid": uuid(), "remaps": remaps})
 		_check_remapkeys()
+	else:
+		var remap = _create_remapkey(uuid())
+		data_remaps.remapkeys.append(remap)
 
 func _check_remapkeys() -> void:
 	for locale in locales():
