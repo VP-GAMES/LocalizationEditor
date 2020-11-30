@@ -70,7 +70,6 @@ func _save_data_translations_csv() -> void:
 	var path_directory = file_path(path)
 	if not directory.dir_exists(path_directory):
 		directory.make_dir(path_directory)
-		_editor.get_editor_interface().get_resource_filesystem().scan()
 	var file = File.new()
 	file.open(setting_path_to_file(), File.WRITE)
 	var locales_line: PoolStringArray = ["keys"]
@@ -82,6 +81,7 @@ func _save_data_translations_csv() -> void:
 			values_line.append(translation.value)
 		file.store_csv_line(values_line)
 	file.close()
+	_editor.get_editor_interface().get_resource_filesystem().scan()
 
 func _save_data_translations_to_project_settings() -> void:
 	var file = setting_path_to_file()
@@ -90,7 +90,7 @@ func _save_data_translations_to_project_settings() -> void:
 	for locale in data.locales:
 		var entry = file + "." + locale + ".translation"
 		translations.append(entry)
-	ProjectSettings.set_setting("translations", translations)
+	ProjectSettings.set_setting("locale/translations", translations)
 
 # ***** UUID ****
 static func uuid() -> String:
