@@ -415,6 +415,10 @@ func _check_remapkeys() -> void:
 				remapkey.remaps.append({"locale": locale, "value": ""})
 
 func save_data_remaps() -> void:
+	if data_remaps.remapkeys.size() > 1 or data_remaps.remapkeys.size() == 1 and not data_remaps.remapkeys[0].remaps[0].value.empty():
+		_save_data_remaps()
+
+func _save_data_remaps() -> void:
 	var remaps = {}
 	for remapkey in  data_remaps.remapkeys:
 		if remapkey.remaps.size() > 0:
