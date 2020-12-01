@@ -19,7 +19,8 @@ func set_data(type: String, data: LocalizationData):
 	_draw_view()
 
 func _init_connections() -> void:
-	_filter_ui.connect("text_changed", self, "_filter_changed_action")
+	if not _filter_ui.is_connected("text_changed", self, "_filter_changed_action"):
+		_filter_ui.connect("text_changed", self, "_filter_changed_action")
 
 func _draw_view() -> void:
 	_filter_ui.text = _filter

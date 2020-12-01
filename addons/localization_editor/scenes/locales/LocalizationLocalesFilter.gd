@@ -13,8 +13,10 @@ func set_data(data: LocalizationData) -> void:
 	_init_connections()
 
 func _init_connections() -> void:
-	_filter_ui.connect("text_changed", self, "_on_filter_changed")
-	_selected_ui.connect("toggled", self, "_on_selected_changed")
+	if not _filter_ui.is_connected("text_changed", self, "_on_filter_changed"):
+		_filter_ui.connect("text_changed", self, "_on_filter_changed")
+	if not _selected_ui.is_connected("toggled", self, "_on_selected_changed"):
+		_selected_ui.connect("toggled", self, "_on_selected_changed")
 
 func _on_filter_changed(text: String) -> void:
 	_data.locales_filter_put(text)

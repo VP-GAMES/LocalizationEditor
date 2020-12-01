@@ -32,8 +32,10 @@ func _init_styles() -> void:
 	_translation_ui_style_empty.set_bg_color(Color("#661c1c"))
 
 func _init_connections() -> void:
-	_translation_ui.connect("text_changed", self, "_on_text_changed")
-	_translation_ui.connect("gui_input", self, "_on_gui_input")
+	if not _translation_ui.is_connected("text_changed", self, "_on_text_changed"):
+		_translation_ui.connect("text_changed", self, "_on_text_changed")
+	if not _translation_ui.is_connected("gui_input", self, "_on_gui_input"):
+		_translation_ui.connect("gui_input", self, "_on_gui_input")
 
 func _draw_view() -> void:
 	_translation_ui.text = _translation.value

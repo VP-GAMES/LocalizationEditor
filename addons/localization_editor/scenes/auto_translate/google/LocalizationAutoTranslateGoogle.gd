@@ -21,8 +21,10 @@ func set_data(data: LocalizationData) -> void:
 	_update_view()
 
 func _init_connections() -> void:
-	_data.connect("data_changed", self, "_update_view")
-	_translate_ui.connect("pressed", self, "_on_translate_pressed")
+	if not _data.is_connected("data_changed", self, "_update_view"):
+		_data.connect("data_changed", self, "_update_view")
+	if not _translate_ui.is_connected("pressed", self, "_on_translate_pressed"):
+		_translate_ui.connect("pressed", self, "_on_translate_pressed")
 
 func _update_view() -> void:
 	_init_from_language_ui()
@@ -30,14 +32,16 @@ func _update_view() -> void:
 
 func _init_from_language_ui() -> void:
 	_from_language_ui.clear()
-	_from_language_ui.connect("selection_changed", self, "_check_translate_ui")
+	if not _from_language_ui.is_connected("selection_changed", self, "_check_translate_ui"):
+		_from_language_ui.connect("selection_changed", self, "_check_translate_ui")
 	for locale in _data.locales():
 		var from_language_label = Locales.label_by_code(locale)
 		_from_language_ui.add_item(from_language_label)
 
 func _init_to_language_ui() -> void:
 	_to_language_ui.clear()
-	_to_language_ui.connect("selection_changed", self, "_check_translate_ui")
+	if not _to_language_ui.is_connected("selection_changed", self, "_check_translate_ui"):
+		_to_language_ui.connect("selection_changed", self, "_check_translate_ui")
 	_locales_google.clear()
 	for locale in GoogleLocales.LOCALES:
 		if Locales.has_code(locale.code):

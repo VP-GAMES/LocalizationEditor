@@ -36,8 +36,10 @@ func _eye_ui_state() -> void:
 	_update_view_eye(_selection_ui.is_pressed())
 
 func _init_connections() -> void:
-	_selection_ui.connect("toggled", self, "_on_selection_changed")
-	_eye_ui.connect("toggled", self, "_on_eye_changed")
+	if not _selection_ui.is_connected("toggled", self, "_on_selection_changed"):
+		_selection_ui.connect("toggled", self, "_on_selection_changed")
+	if not _eye_ui.is_connected("toggled", self, "_on_eye_changed"):
+		_eye_ui.connect("toggled", self, "_on_eye_changed")
 
 func _on_selection_changed(value) -> void:
 	if value == true:

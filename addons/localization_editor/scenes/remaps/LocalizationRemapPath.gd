@@ -36,11 +36,16 @@ func _init_styles() -> void:
 	_remap_ui_style_resource_double.set_bg_color(Color("#174044"))
 	
 func _init_connections() -> void:
-	_data.connect("data_remapkey_value_changed", self, "_draw_view")
-	connect("focus_entered", self, "_on_focus_entered")
-	connect("focus_exited", self, "_on_focus_exited")
-	connect("text_changed", self, "_remap_value_changed")
-	connect("gui_input", self, "_on_gui_input")
+	if not _data.is_connected("data_remapkey_value_changed", self, "_draw_view"):
+		_data.connect("data_remapkey_value_changed", self, "_draw_view")
+	if not is_connected("focus_entered", self, "_on_focus_entered"):
+		connect("focus_entered", self, "_on_focus_entered")
+	if not is_connected("focus_exited", self, "_on_focus_exited"):
+		connect("focus_exited", self, "_on_focus_exited")
+	if not is_connected("text_changed", self, "_remap_value_changed"):
+		connect("text_changed", self, "_remap_value_changed")
+	if not is_connected("gui_input", self, "_on_gui_input"):
+		connect("gui_input", self, "_on_gui_input")
 
 func _draw_view() -> void:
 	if has_focus():

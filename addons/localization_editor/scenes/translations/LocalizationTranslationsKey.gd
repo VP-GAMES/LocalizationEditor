@@ -31,10 +31,14 @@ func _init_styles() -> void:
 	_key_ui_style_double.set_bg_color(Color("#192e59"))
 
 func _init_connections() -> void:
-	_add_ui.connect("pressed", self, "_add_pressed")
-	_del_ui.connect("pressed", self, "_del_pressed")
-	_key_ui.connect("text_changed", self, "_key_value_changed")
-	_data.connect("data_key_value_changed", self, "_check_key_ui")
+	if not _add_ui.is_connected("pressed", self, "_add_pressed"):
+		_add_ui.connect("pressed", self, "_add_pressed")
+	if not _del_ui.is_connected("pressed", self, "_del_pressed"):
+		_del_ui.connect("pressed", self, "_del_pressed")
+	if not _key_ui.is_connected("text_changed", self, "_key_value_changed"):
+		_key_ui.connect("text_changed", self, "_key_value_changed")
+	if not _data.is_connected("data_key_value_changed", self, "_check_key_ui"):
+		_data.connect("data_key_value_changed", self, "_check_key_ui")
 
 func _draw_view() -> void:
 	_key_ui.text = _key.value

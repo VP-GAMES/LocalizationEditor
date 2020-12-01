@@ -17,8 +17,10 @@ func _ready() -> void:
 	_init_connections()
 
 func _init_connections() -> void:
-	_add_ui.connect("pressed", self, "_on_add_pressed")
-	_del_ui.connect("pressed", self, "_on_del_pressed")
+	if not _add_ui.is_connected("pressed", self, "_on_add_pressed"):
+		_add_ui.connect("pressed", self, "_on_add_pressed")
+	if not _del_ui.is_connected("pressed", self, "_on_del_pressed"):
+		_del_ui.connect("pressed", self, "_on_del_pressed")
 
 func _on_add_pressed() -> void:
 	_data._add_remapkey_new_after_uuid_remap(_key.uuid)

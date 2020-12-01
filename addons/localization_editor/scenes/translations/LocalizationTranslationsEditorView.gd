@@ -19,7 +19,8 @@ func set_data(data: LocalizationData) -> void:
 	_init_connections()
 
 func _init_connections() -> void:
-	_split_ui.connect("dragged", self, "_on_split_dragged")
+	if not _split_ui.is_connected("dragged", self, "_on_split_dragged"):
+		_split_ui.connect("dragged", self, "_on_split_dragged")
 
 func _process(delta):
 	if _split_viewport_size != rect_size.x:

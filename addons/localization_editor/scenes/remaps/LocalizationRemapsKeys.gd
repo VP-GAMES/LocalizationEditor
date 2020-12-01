@@ -24,7 +24,8 @@ func set_data(data: LocalizationData) -> void:
 	_update_view()
 
 func _init_connections() -> void:
-	_data.connect("data_changed", self, "_update_view")
+	if not _data.is_connected("data_changed", self, "_update_view"):
+		_data.connect("data_changed", self, "_update_view")
 
 func _update_view() -> void:
 	_clear_view()

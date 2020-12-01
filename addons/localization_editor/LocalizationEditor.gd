@@ -25,9 +25,12 @@ func set_editor(editor: EditorPlugin) -> void:
 	_update_view()
 
 func _init_connections() -> void:
-	_data.connect("settings_changed", self, "_update_view")
-	_save_ui.connect("pressed", self, "save_data")
-	_open_ui.connect("pressed", self, "_open_file")
+	if not _data.is_connected("settings_changed", self, "_update_view"):
+		_data.connect("settings_changed", self, "_update_view")
+	if not _save_ui.is_connected("pressed", self, "save_data"):
+		_save_ui.connect("pressed", self, "save_data")
+	if not _open_ui.is_connected("pressed", self, "_open_file"):
+		_open_ui.connect("pressed", self, "_open_file")
 
 func _load_data() -> void:
 	_data.init_data_translations()

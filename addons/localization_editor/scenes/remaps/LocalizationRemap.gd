@@ -26,10 +26,14 @@ func set_data(key, remap, data: LocalizationData) -> void:
 	_draw_view()
 
 func _init_connections() -> void:
-	_data.connect("data_remapkey_value_changed", self, "_draw_view")
-	_audio_ui.connect("pressed", self, "_on_audio_pressed")
-	_video_ui.connect("pressed", self, "_on_video_pressed")
-	_image_ui.connect("pressed", self, "_on_image_pressed")
+	if not _data.is_connected("data_remapkey_value_changed", self, "_draw_view"):
+		_data.connect("data_remapkey_value_changed", self, "_draw_view")
+	if not _audio_ui.is_connected("pressed", self, "_on_audio_pressed"):
+		_audio_ui.connect("pressed", self, "_on_audio_pressed")
+	if not _video_ui.is_connected("pressed", self, "_on_video_pressed"):
+		_video_ui.connect("pressed", self, "_on_video_pressed")
+	if not _image_ui.is_connected("pressed", self, "_on_image_pressed"):
+		_image_ui.connect("pressed", self, "_on_image_pressed")
 
 func _draw_view() -> void:
 	_check_buttons()
