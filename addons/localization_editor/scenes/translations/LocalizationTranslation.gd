@@ -61,6 +61,7 @@ func _on_gui_input(event: InputEvent) -> void:
 				text_edit.connect("text_changed", self, "_on_text_changed_text_edit", [text_edit, _translation, _translation_ui])
 				root.add_child(text_dialog)
 				text_dialog.popup_centered()
+				text_dialog.set_data(_data)
 
 func _on_popup_hide(root, text_dialog) -> void:
 	root.remove_child(text_dialog)

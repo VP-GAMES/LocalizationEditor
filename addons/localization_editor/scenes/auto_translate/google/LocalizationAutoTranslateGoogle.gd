@@ -64,10 +64,9 @@ func _translate(from_code: String, to_code: String) -> void:
 		_data.add_locale(to_code, false)
 	for key in _data.keys():
 		var from_translation = _data.translation_by_locale(key, from_code)
-		if from_translation != null and not from_translation.value.empty():
-			var to_translation = _data.translation_by_locale(key, to_code)
-			if to_translation.value == null or to_translation.value.empty():
-				_create_request(from_translation, to_translation)
+		var to_translation = _data.translation_by_locale(key, to_code)
+		if from_translation != null and not from_translation.value.empty() and (to_translation.value == null or to_translation.value.empty()):
+			_create_request(from_translation, to_translation)
 		else:
 			_add_progress()
 

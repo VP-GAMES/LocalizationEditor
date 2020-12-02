@@ -2,7 +2,7 @@
 
 [ext_resource path="res://addons/localization_example/Data/Images/play_en.png" type="Texture" id=1]
 [ext_resource path="res://addons/localization_example/Main.gd" type="Script" id=2]
-[ext_resource path="res://addons/localization_example/Fonts/Pangolin-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://addons/localization_example/font/Pangolin-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://addons/localization_example/Data/Audio/hello_en.ogg" type="AudioStream" id=4]
 [ext_resource path="res://addons/localization_example/Data/Video/video_en.webm" type="VideoStream" id=5]
 

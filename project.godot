@@ -25,10 +25,6 @@ config/name="LocalizationEditor"
 run/main_scene="res://addons/localization_example/Main.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-LocalizationManager="res://addons/localization_editor/LocalizationManager.gd"
-
 [editor_plugins]
 
 enabled=PoolStringArray( "localization_editor" )

@@ -55,26 +55,25 @@ func _line_edit_gui_input(event: InputEvent) -> void:
 
 func _on_text_changed(filter: String) -> void:
 	_filter = filter
-	_check_selection()
-	_update_popup_view()
+	_update_popup_view(_filter)
 
-func _update_popup_view() -> void:
-	_update_items_view()
+func _update_popup_view(filter = "") -> void:
+	_update_items_view(filter)
 	var rect = get_global_rect()
 	var position =  Vector2(rect.position.x, rect.position.y + rect.size.y)
 	var size = Vector2(rect.size.x, popup_maxheight)
 	_popup_panel.popup(Rect2(position, size))
 	grab_focus()
 
-func _update_items_view() -> void:
+func _update_items_view(filter = "") -> void:
 	for child in _popup_panel_vbox.get_children():
 		_popup_panel_vbox.remove_child(child)
 		child.queue_free()
 	for index in range(_items.size()):
-		if _filter.empty():
+		if filter.empty():
 			_popup_panel_vbox.add_child(_init_check_box(index))
 		else:
-			if _filter in _items[index]:
+			if filter in _items[index]:
 				_popup_panel_vbox.add_child(_init_check_box(index))
 
 func _init_check_box(index: int) -> CheckBox:
@@ -87,17 +86,9 @@ func _init_check_box(index: int) -> CheckBox:
 	return check_box
 
 func _on_selection_changed(index: int) -> void:
-	_filter = _items[selected]
-	text = _filter
-	_check_selection()
-	_popup_panel.hide()
-
-func _check_selection() -> void:
-	var new_index = -1
-	for index in range(_items.size()):
-		var item = _items[index]
-		if item == _filter:
-			new_index = index
-	if new_index != selected:
-		selected = new_index
+	if selected != index:
+		selected = index
+		_filter = _items[selected]
+		text = _filter
 		emit_signal("selection_changed")
+	_popup_panel.hide()
