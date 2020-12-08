@@ -1,0 +1,56 @@
+extends Control
+
+onready var _locales = TranslationServer.get_loaded_locales()
+
+onready var _content_ui = $Content
+onready var _label_error_ui = $LabelError
+onready var _placeholder_ui = $Content/VBox/HBox/Placeholder
+onready var _value_ui = $Content/VBox/HBox/Value
+onready var _apply_ui = $Content/VBox/HBox/Apply
+onready var _label_top_ui =$Content/VBox/LabelTop
+onready var _label_middle_ui =$Content/VBox/LabelMiddle
+onready var _label_bottom_ui =$Content/VBox/LabelBottom
+onready var _languages_ui = $Content/VBox/Languages
+var _localization_manager
+
+func _ready() -> void:
+	_content_ui.hide()
+	_label_error_ui.hide()
+	if _is_localization_manager_loaded():
+		_content_ui.show()
+	else:
+		_label_error_ui.show()
+		return
+	_init_connections()
+	_update_translation_from_manager()
+	_init_languages()
+
+func _is_localization_manager_loaded() -> bool:
+	_localization_manager = get_tree().get_root().get_node("LocalizationManager")
+	return  is_instance_valid(_localization_manager)
+
+func _init_connections() -> void:
+	_localization_manager.connect("translation_changed", self, "_update_translation_from_manager")
+	_apply_ui.connect("pressed", self, "_on_apply_pressed")
+	_languages_ui.connect("item_selected", self, "_on_language_item_selected")
+
+func _update_translation_from_manager() -> void:
+	_label_top_ui.text = _localization_manager.tr(LocalizationManagerKeys.KEY_PLACEHOLDER_AGE)
+	_label_middle_ui.text = _localization_manager.tr(LocalizationManagerKeys.KEY_PLACEHOLDER_NAME)
+	_label_bottom_ui.text = _localization_manager.tr(LocalizationManagerKeys.KEY_PLACEHOLDER_NAME_AGE)
+
+func _on_apply_pressed() -> void:
+	var placeholder = _placeholder_ui.text
+	var value = _value_ui.text
+	_localization_manager.set_placeholder(placeholder, value)
+
+func _init_languages() -> void:
+	var index: = -1
+	for i in range(_locales.size()):
+		_languages_ui.add_item(TranslationServer.get_locale_name(_locales[i]))
+		if _locales[i] in TranslationServer.get_locale():
+			index = i
+	_languages_ui.select(index)
+
+func _on_language_item_selected(id: int) -> void:
+	TranslationServer.set_locale(_locales[id])

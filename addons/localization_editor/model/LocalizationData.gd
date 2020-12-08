@@ -62,7 +62,10 @@ func _init_data_translations_csv() -> void:
 
 func save_data_translations() -> void:
 	_save_data_translations_csv()
+	_save_data_translations_keys()
+	_save_data_translations_placeholders()
 	_save_data_translations_to_project_settings()
+	_editor.get_editor_interface().get_resource_filesystem().scan()
 
 func _save_data_translations_csv() -> void:
 	var directory = Directory.new()
@@ -81,7 +84,51 @@ func _save_data_translations_csv() -> void:
 			values_line.append(translation.value)
 		file.store_csv_line(values_line)
 	file.close()
-	_editor.get_editor_interface().get_resource_filesystem().scan()
+
+func _save_data_translations_keys() -> void:
+	var file = File.new()
+	file.open("res://addons/localization_editor/LocalizationManagerKeys.gd", File.WRITE)
+	var source_code = "tool\n"
+	source_code += "class_name LocalizationManagerKeys\n\n"
+	for key in data.keys:
+		source_code += "const " + key.value + " = \"" + key.value +"\"\n"
+	source_code += "\nconst KEYS = [\n"
+	for index in range(data.keys.size()):
+		source_code += " \"" + data.keys[index].value + "\""
+		if index != data.keys.size() - 1:
+			source_code += ",\n"
+	source_code += "\n]"
+	file.store_string(source_code)
+	file.close()
+
+func _save_data_translations_placeholders() -> void:
+	var placeholders = {}
+	var regex = RegEx.new()
+	regex.compile("{{(.+?)}}")
+	for key in data.keys:
+		var results = regex.search_all(key.translations[0].value)
+		for result in results:
+			var name = result.get_string()
+			var clean_name = name.replace("{{", "");
+			clean_name = clean_name.replace("}}", "");
+			if not placeholders.has(clean_name):
+				placeholders[clean_name] = name
+	var file = File.new()
+	file.open("res://addons/localization_editor/LocalizationManagerPlaceholders.gd", File.WRITE)
+	var source_code = "tool\n"
+	source_code += "class_name LocalizationManagerPlaceholders\n\n"
+	for placeholder_key in placeholders.keys():
+		source_code += "const " + placeholder_key + " = \"" + placeholders[placeholder_key] +"\"\n"
+	source_code += "\nconst PLACEHOLDERS = [\n"
+	var count = 0
+	for placeholder_key in placeholders.keys():
+		source_code += " \"" + placeholder_key + "\""
+		if count != placeholders.size() - 1:
+			source_code += ",\n"
+		count += 1
+	source_code += "\n]"
+	file.store_string(source_code)
+	file.close()
 
 func _save_data_translations_to_project_settings() -> void:
 	var file = setting_path_to_file()

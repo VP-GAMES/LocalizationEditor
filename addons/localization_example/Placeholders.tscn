@@ -1,0 +1,161 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://addons/localization_example/Placeholders.gd" type="Script" id=1]
+[ext_resource path="res://addons/localization_example/font/Pangolin-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.231373, 0.478431, 0.541176, 0 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 40
+font_data = ExtResource( 2 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Content" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBox" type="VBoxContainer" parent="Content"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1019.0
+margin_bottom = 595.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBox" type="HBoxContainer" parent="Content/VBox"]
+margin_right = 1014.0
+margin_bottom = 30.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelPlaceholder" type="Label" parent="Content/VBox/HBox"]
+margin_top = 5.0
+margin_right = 139.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 1 )
+text = "KEY_PLACEHOLDER"
+
+[node name="Placeholder" type="LineEdit" parent="Content/VBox/HBox"]
+margin_left = 143.0
+margin_right = 263.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 120, 0 )
+text = "{{name}}"
+placeholder_text = "placeholder"
+
+[node name="LabelValue" type="Label" parent="Content/VBox/HBox"]
+margin_left = 267.0
+margin_top = 5.0
+margin_right = 352.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 1 )
+text = "KEY_VALUE"
+
+[node name="Value" type="LineEdit" parent="Content/VBox/HBox"]
+margin_left = 356.0
+margin_right = 476.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 120, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "Mr Vladimir"
+placeholder_text = "value"
+
+[node name="Apply" type="Button" parent="Content/VBox/HBox"]
+margin_left = 480.0
+margin_right = 575.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 3 )
+text = "KEY_APPLY"
+
+[node name="MarginTop" type="MarginContainer" parent="Content/VBox"]
+margin_top = 34.0
+margin_right = 1014.0
+margin_bottom = 44.0
+custom_constants/margin_top = 10
+
+[node name="LabelTop" type="Label" parent="Content/VBox"]
+margin_top = 48.0
+margin_right = 1014.0
+margin_bottom = 68.0
+custom_fonts/font = SubResource( 4 )
+text = "top"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelMiddle" type="Label" parent="Content/VBox"]
+margin_top = 72.0
+margin_right = 1014.0
+margin_bottom = 92.0
+custom_fonts/font = SubResource( 4 )
+text = "middle"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelBottom" type="Label" parent="Content/VBox"]
+margin_top = 96.0
+margin_right = 1014.0
+margin_bottom = 116.0
+custom_fonts/font = SubResource( 4 )
+text = "bottom"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginBottom" type="MarginContainer" parent="Content/VBox"]
+margin_top = 120.0
+margin_right = 1014.0
+margin_bottom = 130.0
+custom_constants/margin_top = 10
+
+[node name="Languages" type="OptionButton" parent="Content/VBox"]
+margin_top = 134.0
+margin_right = 1014.0
+margin_bottom = 154.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelError" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.992157, 1, 0.00392157, 1 )
+text = "To support placeholders you have to autoload res://addons/localization_editor/LocalizationManager.gd"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
