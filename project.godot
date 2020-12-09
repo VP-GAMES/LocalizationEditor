@@ -13,17 +13,33 @@ _global_script_classes=[ {
 "class": "LocalizationData",
 "language": "GDScript",
 "path": "res://addons/localization_editor/model/LocalizationData.gd"
+}, {
+"base": "Reference",
+"class": "LocalizationManagerKeys",
+"language": "GDScript",
+"path": "res://addons/localization_editor/LocalizationManagerKeys.gd"
+}, {
+"base": "Reference",
+"class": "LocalizationManagerPlaceholders",
+"language": "GDScript",
+"path": "res://addons/localization_editor/LocalizationManagerPlaceholders.gd"
 } ]
 _global_script_class_icons={
-"LocalizationData": ""
+"LocalizationData": "",
+"LocalizationManagerKeys": "",
+"LocalizationManagerPlaceholders": ""
 }
 translations=PoolStringArray( "res://localization/localizations.en.translation", "res://localization/localizations.de.translation", "res://localization/localizations.ru.translation" )
 
 [application]
 
 config/name="LocalizationEditor"
-run/main_scene="res://addons/localization_example/Main.tscn"
+run/main_scene="res://addons/localization_example/Localization.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
 
 [editor_plugins]
 
@@ -42,6 +58,7 @@ translations=PoolStringArray( "res://localization/localizations.en.translation",
 
 locale_invisible=[  ]
 locales_visibility=[  ]
+keys="res://localization/keys.tres"
 
 [rendering]
 
