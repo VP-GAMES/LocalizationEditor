@@ -66,7 +66,7 @@ margin_left = 143.0
 margin_right = 263.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 120, 0 )
-text = "{{name}}"
+text = "{{NAME}}"
 placeholder_text = "placeholder"
 
 [node name="LabelValue" type="Label" parent="Content/VBox/HBox"]
