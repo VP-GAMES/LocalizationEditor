@@ -1,6 +1,9 @@
+# LocalizationEditor example of Placeholdes usage: MIT License
+# @author Vladimir Petrenko
 extends Control
 
 onready var _locales = TranslationServer.get_loaded_locales()
+var _localization_manager
 
 onready var _content_ui = $Content
 onready var _label_error_ui = $LabelError
@@ -11,7 +14,6 @@ onready var _label_top_ui =$Content/VBox/LabelTop
 onready var _label_middle_ui =$Content/VBox/LabelMiddle
 onready var _label_bottom_ui =$Content/VBox/LabelBottom
 onready var _languages_ui = $Content/VBox/Languages
-var _localization_manager
 
 func _ready() -> void:
 	_content_ui.hide()
@@ -30,9 +32,15 @@ func _is_localization_manager_loaded() -> bool:
 	return  is_instance_valid(_localization_manager)
 
 func _init_connections() -> void:
-	_localization_manager.connect("translation_changed", self, "_update_translation_from_manager")
-	_apply_ui.connect("pressed", self, "_on_apply_pressed")
-	_languages_ui.connect("item_selected", self, "_on_language_item_selected")
+	var resultManager = _localization_manager.connect("translation_changed", self, "_update_translation_from_manager")
+	if resultManager != OK:
+		push_error("Can't connect manager translation_changed")
+	var resultApply = _apply_ui.connect("pressed", self, "_on_apply_pressed")
+	if resultApply != OK:
+		push_error("Can't connect apply button")
+	var resultLanguages = _languages_ui.connect("item_selected", self, "_on_language_item_selected")
+	if resultLanguages != OK:
+		push_error("Can't connect languages option button")
 
 func _update_translation_from_manager() -> void:
 	_label_top_ui.text = _localization_manager.tr(LocalizationManagerKeys.KEY_PLACEHOLDER_AGE)

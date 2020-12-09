@@ -1,4 +1,5 @@
-tool
+# Keys for LocalizationManger to use in source code: MIT License
+# @author Vladimir Petrenkotool
 class_name LocalizationManagerKeys
 
 const KEY_NAME = "KEY_NAME"

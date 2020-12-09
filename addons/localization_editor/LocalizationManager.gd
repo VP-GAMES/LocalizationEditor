@@ -1,3 +1,5 @@
+# LocalizationManager for usege with placeholders: MIT License
+# @author Vladimir Petrenko
 extends Node
 
 signal translation_changed

@@ -1,4 +1,5 @@
-tool
+# Placeholders for LocalizationManger to use in source code: MIT License
+# @author Vladimir Petrenkotool
 class_name LocalizationManagerPlaceholders
 
 const NAME = "{{NAME}}"
