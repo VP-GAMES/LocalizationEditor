@@ -20,7 +20,7 @@ var data_filter_remaps: Dictionary = {}
 const uuid_gen = preload("res://addons/localization_editor/uuid/uuid.gd")
 
 const default_path_to_file = "res://localization/localizations.csv"
-const AUTHOR = "# @author Vladimir Petrenko"
+const AUTHOR = "# @author Vladimir Petrenko\n"
 const SETTINGS_PATH_TO_FILE = "localization_editor/locales_path_to_file"
 const SETTINGS_LOCALES_VISIBILITY = "localization_editor/locales_visibility"
 const SETTINGS_TRANSLATIONS_SPLIT_OFFSET = "localization_editor/translations_split_offset"
