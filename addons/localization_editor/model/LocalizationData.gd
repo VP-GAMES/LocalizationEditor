@@ -643,7 +643,7 @@ func remapkey(uuid: String):
 
 func remap_type(remap) -> String:
 	match file_extension(remap.value):
-		"ogg", "wav":
+		"ogg", "wav", "mp3":
 			return "audio"
 		"bmp", "dds", "exr", "hdr", "jpg", "jpeg", "png", "tga", "svg", "svgz", "webp":
 			return "image"
@@ -653,7 +653,7 @@ func remap_type(remap) -> String:
 			return "undefined"
 
 func supported_file_extensions() -> Array:
-	return ["ogg", "wav", "bmp", "dds", "exr", "hdr", "jpg", "jpeg", "png", "tga", "svg", "svgz", "webp", "webm", "o"]
+	return ["ogg", "wav", "mp3", "bmp", "dds", "exr", "hdr", "jpg", "jpeg", "png", "tga", "svg", "svgz", "webp", "webm", "o"]
 
 # ***** EDITOR SETTINGS *****
 signal settings_changed
