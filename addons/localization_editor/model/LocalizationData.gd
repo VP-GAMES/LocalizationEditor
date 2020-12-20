@@ -480,7 +480,7 @@ func _save_data_remaps() -> void:
 		if remapkey.remaps.size() > 0:
 			var key = remapkey.remaps[0].value
 			remaps[key] = []
-			for index in range(1, remapkey.remaps.size()):
+			for index in range(0, remapkey.remaps.size()):
 				var remap = remapkey.remaps[index]
 				var value = remap.value + ":" + remap.locale
 				remaps[key].append(value)
