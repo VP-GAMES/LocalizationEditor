@@ -6,6 +6,7 @@
 [node name="LocalizationTranslationsKeys" type="Panel"]
 margin_right = 344.0
 margin_bottom = 600.0
+rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 2 )
