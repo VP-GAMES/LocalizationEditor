@@ -59,6 +59,7 @@ translations=PoolStringArray( "res://localization/localizations.en.translation",
 locale_invisible=[  ]
 locales_visibility=[  ]
 keys="res://localization/keys.tres"
+translations_split_offset=251
 
 [rendering]
 

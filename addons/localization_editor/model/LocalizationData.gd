@@ -448,9 +448,9 @@ func init_data_remaps() -> void:
 			var keys = settings_remaps.keys();
 			for key in keys:
 				var remaps = []
-				var first_locale = data.locales[0] if data.locales.size() > 0 else TranslationServer.get_locale()
-				check_locale(first_locale)
-				remaps.append({"locale": first_locale , "value": key })
+#				var first_locale = data.locales[0] if data.locales.size() > 0 else TranslationServer.get_locale()
+#				check_locale(first_locale)
+#				remaps.append({"locale": first_locale , "value": key })
 				for remap in settings_remaps[key]:
 					var index = remap.find_last(":")
 					var locale  = remap.substr(index + 1)
