@@ -29,7 +29,7 @@ func _ready() -> void:
 
 func _is_localization_manager_loaded() -> bool:
 	_localization_manager = get_tree().get_root().get_node("LocalizationManager")
-	return  is_instance_valid(_localization_manager)
+	return is_instance_valid(_localization_manager)
 
 func _init_connections() -> void:
 	var resultManager = _localization_manager.connect("translation_changed", self, "_update_translation_from_manager")
