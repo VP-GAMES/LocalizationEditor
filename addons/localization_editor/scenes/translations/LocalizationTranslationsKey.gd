@@ -65,10 +65,7 @@ func _check_key_ui() -> void:
 	if _key_ui.text.empty():
 		_key_ui.set("custom_styles/normal", _key_ui_style_empty)
 		_key_ui.hint_tooltip =  "Please enter a key name"
-	if " " in _key_ui.text:
-		_key_ui.set("custom_styles/normal", _key_ui_style_empty)
-		_key_ui.hint_tooltip =  "Key name invalid. You have spaces inside the name."
-	elif _data.is_key_value_double(_key_ui.text):
+	if _data.is_key_value_double(_key_ui.text):
 		_key_ui.hint_tooltip =  "Keyname already exists"
 		_key_ui.set("custom_styles/normal", _key_ui_style_double)
 	else:

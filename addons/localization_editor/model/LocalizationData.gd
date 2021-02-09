@@ -94,12 +94,10 @@ func _save_data_translations_keys() -> void:
 	source_code += "tool\n"
 	source_code += "class_name LocalizationManagerKeys\n\n"
 	for key in data.keys:
-		if not  " " in key.value:
-			source_code += "const " + key.value + " = \"" + key.value +"\"\n"
+		source_code += "const " + key.value.replace(" ", "_") + " = \"" + key.value +"\"\n"
 	source_code += "\nconst KEYS = [\n"
 	for index in range(data.keys.size()):
-		if not  " " in data.keys[index].value:
-			source_code += " \"" + data.keys[index].value + "\",\n"
+		source_code += " \"" + data.keys[index].value + "\",\n"
 	source_code = source_code.substr(0, source_code.rfind(",\n"))
 	source_code += "\n]"
 	file.store_string(source_code)
