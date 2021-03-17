@@ -52,6 +52,7 @@ margin_left = 54.0
 margin_right = 324.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 270, 0 )
+hint_tooltip = "Select language from"
 size_flags_horizontal = 1
 
 [node name="To" type="Label" parent="Panel/VBox/HBox"]
@@ -68,12 +69,14 @@ margin_left = 351.0
 margin_right = 621.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 270, 0 )
+hint_tooltip = "Select language to"
 size_flags_horizontal = 1
 
 [node name="Translate" type="Button" parent="Panel/VBox/HBox"]
 margin_left = 625.0
 margin_right = 695.0
 margin_bottom = 24.0
+hint_tooltip = "Execute translation"
 disabled = true
 text = "Translate"
 
