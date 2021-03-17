@@ -27,10 +27,12 @@ size_flags_vertical = 0
 [node name="Add" type="Button" parent="HBoxContainer"]
 margin_right = 22.0
 margin_bottom = 20.0
+hint_tooltip = "Add remap"
 icon = ExtResource( 1 )
 
 [node name="Del" type="Button" parent="HBoxContainer"]
 margin_left = 26.0
 margin_right = 48.0
 margin_bottom = 20.0
+hint_tooltip = "Del remap"
 icon = ExtResource( 2 )

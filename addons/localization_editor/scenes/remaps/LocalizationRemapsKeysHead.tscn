@@ -34,6 +34,7 @@ rect_min_size = Vector2( 0, 24 )
 margin_right = 22.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 20, 20 )
+hint_tooltip = "Audio filter"
 toggle_mode = true
 icon = ExtResource( 2 )
 
@@ -42,6 +43,7 @@ margin_left = 26.0
 margin_right = 48.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 20, 20 )
+hint_tooltip = "Textire filter"
 toggle_mode = true
 icon = ExtResource( 1 )
 
@@ -55,6 +57,7 @@ rect_min_size = Vector2( 0, 24 )
 margin_right = 22.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 20, 20 )
+hint_tooltip = "Video filter"
 toggle_mode = true
 icon = ExtResource( 3 )
 
@@ -63,4 +66,5 @@ margin_left = 26.0
 margin_right = 48.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 20, 20 )
+hint_tooltip = "Reset filters"
 icon = ExtResource( 4 )
