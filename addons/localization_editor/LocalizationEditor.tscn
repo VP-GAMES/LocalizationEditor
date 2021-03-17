@@ -44,6 +44,7 @@ size_flags_horizontal = 3
 margin_right = 22.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
+hint_tooltip = "Save translations"
 icon = ExtResource( 6 )
 
 [node name="Open" type="Button" parent="VBox/Margin/HBox"]
@@ -51,6 +52,7 @@ margin_left = 26.0
 margin_right = 48.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
+hint_tooltip = "Open csv"
 icon = ExtResource( 5 )
 
 [node name="File" type="Label" parent="VBox/Margin/HBox"]
