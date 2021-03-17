@@ -43,7 +43,7 @@ margin_left = 26.0
 margin_right = 48.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 20, 20 )
-hint_tooltip = "Textire filter"
+hint_tooltip = "Texture filter"
 toggle_mode = true
 icon = ExtResource( 1 )
 
