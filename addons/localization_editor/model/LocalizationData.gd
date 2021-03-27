@@ -48,8 +48,10 @@ func _init_data_translations_csv() -> void:
 	if file.file_exists(path):
 		file.open(path, file.READ)
 		var locales_line = file.get_csv_line()
-		for index in range(1, locales_line.size()):
-			add_locale(locales_line[index])
+		var size = locales_line.size()
+		if size > 1:
+			for index in range(1, size):
+				add_locale(locales_line[index])
 		data.keys.clear()
 		while !file.eof_reached():
 			var values_line = file.get_csv_line()
@@ -77,6 +79,10 @@ func _save_data_translations_csv() -> void:
 	var file = File.new()
 	file.open(setting_path_to_file(), File.WRITE)
 	var locales_line: PoolStringArray = ["keys"]
+	var locales = data.locales
+	if locales.empty():
+		add_locale(OS.get_locale())
+		data.keys[0].value = "KEY"
 	locales_line.append_array(data.locales)
 	file.store_csv_line(locales_line)
 	for key in data.keys:
@@ -467,8 +473,10 @@ func _check_remapkeys() -> void:
 				remapkey.remaps.append({"locale": locale, "value": ""})
 
 func save_data_remaps() -> void:
-	if data_remaps.remapkeys.size() > 1 or data_remaps.remapkeys.size() == 1 and not data_remaps.remapkeys[0].remaps[0].value.empty():
-		_save_data_remaps()
+	var remapkeys = data_remaps.remapkeys.size() > 1 or data_remaps.remapkeys.size() == 1
+	if remapkeys:
+		if data_remaps.remapkeys[0].remaps.size() > 1 and not data_remaps.remapkeys[0].remaps[0].value.empty():
+			_save_data_remaps()
 
 func _save_data_remaps() -> void:
 	var remaps = {}
