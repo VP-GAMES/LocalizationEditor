@@ -32,6 +32,9 @@ func _init_connections() -> void:
 	if not _open_ui.is_connected("pressed", self, "_open_file"):
 		_open_ui.connect("pressed", self, "_open_file")
 
+func get_data() -> LocalizationData:
+	return _data
+
 func _load_data() -> void:
 	_data.init_data_translations()
 	_data.init_data_remaps()

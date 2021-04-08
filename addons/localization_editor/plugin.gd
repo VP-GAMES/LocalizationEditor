@@ -10,6 +10,7 @@ var _localization_main
 
 func _enter_tree():
 	_localization_main = LocalizationMain.instance()
+	_localization_main.name = "LocalizationEditor"
 	get_editor_interface().get_editor_viewport().add_child(_localization_main)
 	_localization_main.set_editor(self)
 	make_visible(false)
