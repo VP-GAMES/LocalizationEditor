@@ -43,9 +43,9 @@ func _init_connections() -> void:
 		push_error("Can't connect languages option button")
 
 func _update_translation_from_manager() -> void:
-	_label_top_ui.text = _localization_manager.tr(LocalizationManagerKeys.KEY_PLACEHOLDER_AGE)
-	_label_middle_ui.text = _localization_manager.tr(LocalizationManagerKeys.KEY_PLACEHOLDER_NAME)
-	_label_bottom_ui.text = _localization_manager.tr(LocalizationManagerKeys.KEY_PLACEHOLDER_NAME_AGE)
+	_label_top_ui.text = _localization_manager.tr(LocalizationKeys.KEY_PLACEHOLDER_AGE)
+	_label_middle_ui.text = _localization_manager.tr(LocalizationKeys.KEY_PLACEHOLDER_NAME)
+	_label_bottom_ui.text = _localization_manager.tr(LocalizationKeys.KEY_PLACEHOLDER_NAME_AGE)
 
 func _on_apply_pressed() -> void:
 	var placeholder = _placeholder_ui.text

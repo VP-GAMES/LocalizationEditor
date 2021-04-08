@@ -15,19 +15,19 @@ _global_script_classes=[ {
 "path": "res://addons/localization_editor/model/LocalizationData.gd"
 }, {
 "base": "Reference",
-"class": "LocalizationManagerKeys",
+"class": "LocalizationKeys",
 "language": "GDScript",
-"path": "res://addons/localization_editor/LocalizationManagerKeys.gd"
+"path": "res://localization/LocalizationKeys.gd"
 }, {
 "base": "Reference",
-"class": "LocalizationManagerPlaceholders",
+"class": "LocalizationPlaceholders",
 "language": "GDScript",
-"path": "res://addons/localization_editor/LocalizationManagerPlaceholders.gd"
+"path": "res://localization/LocalizationPlaceholders.gd"
 } ]
 _global_script_class_icons={
 "LocalizationData": "",
-"LocalizationManagerKeys": "",
-"LocalizationManagerPlaceholders": ""
+"LocalizationKeys": "",
+"LocalizationPlaceholders": ""
 }
 translations=PoolStringArray( "res://localization/localizations.en.translation", "res://localization/localizations.de.translation", "res://localization/localizations.ru.translation" )
 

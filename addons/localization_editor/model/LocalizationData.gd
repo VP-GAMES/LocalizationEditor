@@ -19,7 +19,8 @@ var data_filter_remaps: Dictionary = {}
 
 const uuid_gen = preload("res://addons/localization_editor/uuid/uuid.gd")
 
-const default_path_to_file = "res://localization/localizations.csv"
+const default_path = "res://localization/"
+const default_path_to_file = default_path + "localizations.csv"
 const AUTHOR = "# @author Vladimir Petrenko\n"
 const SETTINGS_PATH_TO_FILE = "localization_editor/locales_path_to_file"
 const SETTINGS_LOCALES_VISIBILITY = "localization_editor/locales_visibility"
@@ -94,11 +95,11 @@ func _save_data_translations_csv() -> void:
 
 func _save_data_translations_keys() -> void:
 	var file = File.new()
-	file.open("res://addons/localization_editor/LocalizationManagerKeys.gd", File.WRITE)
+	file.open(default_path + "LocalizationKeys.gd", File.WRITE)
 	var source_code = "# Keys for LocalizationManger to use in source code: MIT License\n"
 	source_code += AUTHOR
 	source_code += "tool\n"
-	source_code += "class_name LocalizationManagerKeys\n\n"
+	source_code += "class_name LocalizationKeys\n\n"
 	for key in data.keys:
 		source_code += "const " + key.value.replace(" ", "_") + " = \"" + key.value +"\"\n"
 	source_code += "\nconst KEYS = [\n"
@@ -122,11 +123,11 @@ func _save_data_translations_placeholders() -> void:
 			if not placeholders.has(clean_name):
 				placeholders[clean_name] = name
 	var file = File.new()
-	file.open("res://addons/localization_editor/LocalizationManagerPlaceholders.gd", File.WRITE)
+	file.open(default_path + "LocalizationPlaceholders.gd", File.WRITE)
 	var source_code = "# Placeholders for LocalizationManger to use in source code: MIT License\n"
 	source_code += AUTHOR
 	source_code += "tool\n"
-	source_code += "class_name LocalizationManagerPlaceholders\n\n"
+	source_code += "class_name LocalizationPlaceholders\n\n"
 	for placeholder_key in placeholders.keys():
 		source_code += "const " + placeholder_key + " = \"" + placeholders[placeholder_key] +"\"\n"
 	source_code += "\nconst PLACEHOLDERS = [\n"

@@ -13,7 +13,7 @@ func _ready() -> void:
 func _load_localization_keys() -> void:
 	var regex = RegEx.new()
 	regex.compile("{{(.+?)}}")
-	for _localization_key in LocalizationManagerKeys.KEYS:
+	for _localization_key in LocalizationKeys.KEYS:
 		var results = regex.search_all(tr(_localization_key))
 		for result in results:
 			_add_placeholder(_localization_key, result.get_string())
