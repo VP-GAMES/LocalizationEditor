@@ -424,6 +424,15 @@ func get_translations() -> Array:
 			translations[translation.locale].add_message(key.value, str(translation.value))
 	return translations.values()
 
+# ***** VALUE *****
+func value_by_locale_key(locale_value: String, key_value: String) -> String:
+	for key in data.keys:
+		if key.value == key_value:
+			for translation in key.translations:
+				if translation.locale == locale_value:
+					return translation.value 
+	return key_value
+
 # ***** FILTER *****
 func data_filter_by_type(type: String) -> String:
 	return data_filter[type] if data_filter.has(type) else ""
