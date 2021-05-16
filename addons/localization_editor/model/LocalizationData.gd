@@ -62,7 +62,7 @@ func _init_data_translations_csv() -> void:
 					var translation = {"locale": locales_line[index], "value": values_line[index]}
 					key.translations.append(translation)
 				data.keys.append(key)
-		file.close()
+	file.close()
 
 func save_data_translations() -> void:
 	_save_data_translations_csv()
