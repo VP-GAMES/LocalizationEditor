@@ -27,8 +27,8 @@ func set_editor(editor: EditorPlugin) -> void:
 func _init_connections() -> void:
 	if not _data.is_connected("settings_changed", self, "_update_view"):
 		_data.connect("settings_changed", self, "_update_view")
-	if not _save_ui.is_connected("pressed", self, "save_data"):
-		_save_ui.connect("pressed", self, "save_data")
+	if not _save_ui.is_connected("pressed", self, "_on_save_data"):
+		_save_ui.connect("pressed", self, "_on_save_data")
 	if not _open_ui.is_connected("pressed", self, "_open_file"):
 		_open_ui.connect("pressed", self, "_open_file")
 
@@ -48,8 +48,11 @@ func _data_to_childs() -> void:
 func _update_view() -> void:
 	_file_ui.text = _data.setting_path_to_file()
 
-func save_data() -> void:
-	_data.save_data_translations()
+func _on_save_data() -> void:
+	save_data(true)
+
+func save_data(update_script_classes = false) -> void:
+	_data.save_data_translations(update_script_classes)
 	_data.save_data_remaps()
 
 func _open_file() -> void:

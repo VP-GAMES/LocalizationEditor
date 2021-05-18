@@ -64,12 +64,13 @@ func _init_data_translations_csv() -> void:
 				data.keys.append(key)
 	file.close()
 
-func save_data_translations() -> void:
+func save_data_translations(update_script_classes = false) -> void:
 	_save_data_translations_csv()
 	_save_data_translations_keys()
 	_save_data_translations_placeholders()
 	_save_data_translations_to_project_settings()
-	_editor.get_editor_interface().get_resource_filesystem().scan()
+	if update_script_classes:
+		_editor.get_editor_interface().get_resource_filesystem().update_script_classes()
 
 func _save_data_translations_csv() -> void:
 	var directory = Directory.new()
