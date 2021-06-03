@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "LocalizationPlaceholders",
 "language": "GDScript",
 "path": "res://localization/LocalizationPlaceholders.gd"
+}, {
+"base": "Resource",
+"class": "LocalizationSave",
+"language": "GDScript",
+"path": "res://addons/localization_editor/model/LocalizationSave.gd"
 } ]
 _global_script_class_icons={
 "LocalizationData": "",
 "LocalizationKeys": "",
-"LocalizationPlaceholders": ""
+"LocalizationPlaceholders": "",
+"LocalizationSave": ""
 }
 translations=PoolStringArray( "res://localization/localizations.en.translation", "res://localization/localizations.de.translation", "res://localization/localizations.ru.translation" )
 

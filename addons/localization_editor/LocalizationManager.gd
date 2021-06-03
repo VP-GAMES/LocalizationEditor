@@ -4,11 +4,13 @@ extends Node
 
 signal translation_changed
 
+var _path_to_save = "user://localization.tres"
 var _keys_with_placeholder: Dictionary = {}
 var _placeholders: Dictionary = {}
 
 func _ready() -> void:
 	_load_localization_keys()
+	_load_localization()
 
 func _load_localization_keys() -> void:
 	var regex = RegEx.new()
@@ -40,6 +42,22 @@ func tr(name: String) -> String:
 func _notification(what):
 	match what:
 		MainLoop.NOTIFICATION_TRANSLATION_CHANGED:
+			_save_localization()
 			emit_signal("translation_changed")
 
+func _load_localization():
+	var file = File.new()
+	if file.file_exists(_path_to_save):
+		var save_data = load(_path_to_save) as LocalizationSave
+		if save_data:
+			if save_data.placeholders and not save_data.placeholders.empty():
+				for key in save_data.placeholders.keys():
+					_placeholders[key] = save_data.placeholders[key]
+			if save_data.locale and not save_data.locale.empty():
+				TranslationServer.set_locale(save_data.locale)
 
+func _save_localization() -> void:
+	var save_data = LocalizationSave.new()
+	save_data.locale = TranslationServer.get_locale()
+	save_data.placeholders = _placeholders
+	assert(ResourceSaver.save(_path_to_save, save_data) == OK)
