@@ -4,10 +4,11 @@ extends Control
 
 onready var _locales = TranslationServer.get_loaded_locales()
 var _localization_manager
+var _placeholders: Array
 
 onready var _content_ui = $Content
 onready var _label_error_ui = $LabelError
-onready var _placeholder_ui = $Content/VBox/HBox/Placeholder
+onready var _placeholder_ui = $Content/VBox/HBox/Placeholder as OptionButton
 onready var _value_ui = $Content/VBox/HBox/Value
 onready var _apply_ui = $Content/VBox/HBox/Apply
 onready var _label_top_ui =$Content/VBox/LabelTop
@@ -23,6 +24,7 @@ func _ready() -> void:
 	else:
 		_label_error_ui.show()
 		return
+	_init_placeholders()
 	_init_connections()
 	_update_translation_from_manager()
 	_init_languages()
@@ -30,6 +32,13 @@ func _ready() -> void:
 func _is_localization_manager_loaded() -> bool:
 	_localization_manager = get_tree().get_root().get_node("LocalizationManager")
 	return is_instance_valid(_localization_manager)
+
+func _init_placeholders() -> void:
+	_placeholder_ui.clear()
+	_placeholders = []
+	for placeholder in LocalizationPlaceholders.PLACEHOLDERS:
+		_placeholders.append(placeholder)
+		_placeholder_ui.add_item(placeholder)
 
 func _init_connections() -> void:
 	var resultManager = _localization_manager.connect("translation_changed", self, "_update_translation_from_manager")
@@ -48,7 +57,8 @@ func _update_translation_from_manager() -> void:
 	_label_bottom_ui.text = _localization_manager.tr(LocalizationKeys.KEY_PLACEHOLDER_NAME_AGE)
 
 func _on_apply_pressed() -> void:
-	var placeholder = _placeholder_ui.text
+	var index = _placeholder_ui.get_selected_id()
+	var placeholder = "{{" + _placeholders[index] +"}}"
 	var value = _value_ui.text
 	_localization_manager.set_placeholder(placeholder, value)
 

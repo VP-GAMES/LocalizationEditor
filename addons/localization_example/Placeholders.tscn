@@ -61,13 +61,11 @@ margin_bottom = 25.0
 custom_fonts/font = SubResource( 1 )
 text = "KEY_PLACEHOLDER"
 
-[node name="Placeholder" type="LineEdit" parent="Content/VBox/HBox"]
+[node name="Placeholder" type="OptionButton" parent="Content/VBox/HBox"]
 margin_left = 143.0
 margin_right = 263.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 120, 0 )
-text = "{{NAME}}"
-placeholder_text = "placeholder"
 
 [node name="LabelValue" type="Label" parent="Content/VBox/HBox"]
 margin_left = 267.0
