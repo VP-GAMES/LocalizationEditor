@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/localization_editor/scenes/placeholders/LocalizationPlaceholdersKeys.gd" type="Script" id=1]
+
+[node name="LocalizationPlaceholdersKeys" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Head" type="VBoxContainer" parent="VBox"]
+margin_right = 1024.0
+
+[node name="Scroll" type="ScrollContainer" parent="VBox"]
+margin_top = 4.0
+margin_right = 1024.0
+margin_bottom = 4.0
+
+[node name="Keys" type="VBoxContainer" parent="VBox/Scroll"]

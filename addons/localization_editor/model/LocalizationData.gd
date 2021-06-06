@@ -25,6 +25,7 @@ const AUTHOR = "# @author Vladimir Petrenko\n"
 const SETTINGS_PATH_TO_FILE = "localization_editor/locales_path_to_file"
 const SETTINGS_LOCALES_VISIBILITY = "localization_editor/locales_visibility"
 const SETTINGS_TRANSLATIONS_SPLIT_OFFSET = "localization_editor/translations_split_offset"
+const SETTINGS_PLACEHOLDERS_SPLIT_OFFSET = "localization_editor/placeholders_split_offset"
 
 func set_editor(editor: EditorPlugin) -> void:
 	_editor = editor
@@ -715,6 +716,15 @@ func setting_translations_split_offset() -> int:
 
 func setting_translations_split_offset_put(offset: int) -> void:
 	ProjectSettings.set_setting(SETTINGS_TRANSLATIONS_SPLIT_OFFSET, offset)
+
+func setting_placeholders_split_offset() -> int:
+	var offset = 350
+	if ProjectSettings.has_setting(SETTINGS_PLACEHOLDERS_SPLIT_OFFSET):
+		offset = ProjectSettings.get_setting(SETTINGS_PLACEHOLDERS_SPLIT_OFFSET)
+	return offset
+
+func setting_placeholders_split_offset_put(offset: int) -> void:
+	ProjectSettings.set_setting(SETTINGS_PLACEHOLDERS_SPLIT_OFFSET, offset)
 
 # ***** UTILS *****
 func filename(value: String) -> String:
