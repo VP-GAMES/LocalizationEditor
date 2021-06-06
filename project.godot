@@ -49,7 +49,7 @@ LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "localization_editor" )
+enabled=PoolStringArray( "res://addons/localization_editor/plugin.cfg" )
 
 [locale]
 

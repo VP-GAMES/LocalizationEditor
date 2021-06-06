@@ -9,12 +9,27 @@ var _data:= LocalizationData.new()
 onready var _save_ui = $VBox/Margin/HBox/Save
 onready var _open_ui = $VBox/Margin/HBox/Open
 onready var _file_ui = $VBox/Margin/HBox/File
+onready var _tabs_ui = $VBox/Tabs as TabContainer
 onready var _locales_ui = $VBox/Tabs/Locales
 onready var _remaps_ui = $VBox/Tabs/Remaps
+onready var _placeholders_ui = $VBox/Tabs/Placeholders
 onready var _translations_ui = $VBox/Tabs/Translations
 onready var _auto_translate_ui = $VBox/Tabs/AutoTranslate
 
+const IconResourceTranslations = preload("res://addons/localization_editor/icons/Localization.png")
+const IconResourceRemaps = preload("res://addons/localization_editor/icons/Remaps.png")
+const IconResourceLocales = preload("res://addons/localization_editor/icons/Locales.png")
+const IconResourcePlaceholders = preload("res://addons/localization_editor/icons/Placeholders.png")
+const IconResourceTranslation = preload("res://addons/localization_editor/icons/Translation.png")
+
 const LocalizationEditorDialogFile = preload("res://addons/localization_editor/LocalizationEditorDialogFile.tscn")
+
+func _ready() -> void:
+	_tabs_ui.set_tab_icon(0, IconResourceTranslations)
+	_tabs_ui.set_tab_icon(1, IconResourceRemaps)
+	_tabs_ui.set_tab_icon(2, IconResourceLocales)
+	_tabs_ui.set_tab_icon(3, IconResourcePlaceholders)
+	_tabs_ui.set_tab_icon(4, IconResourceTranslation)
 
 func set_editor(editor: EditorPlugin) -> void:
 	_editor = editor
@@ -43,6 +58,7 @@ func _data_to_childs() -> void:
 	_translations_ui.set_data(_data)
 	_remaps_ui.set_data(_data)
 	_locales_ui.set_data(_data)
+	_placeholders_ui.set_data(_data)
 	_auto_translate_ui.set_data(_data)
 
 func _update_view() -> void:
