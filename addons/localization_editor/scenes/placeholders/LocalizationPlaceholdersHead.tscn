@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/localization_editor/scenes/placeholders/LocalizationPlaceholdersHead.gd" type="Script" id=1]
+
+[node name="LocalizationHead" type="VBoxContainer"]
+margin_right = 344.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleMargin" type="MarginContainer" parent="."]
+margin_right = 344.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 0, 26 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_constants/margin_right = 3
+custom_constants/margin_top = 3
+custom_constants/margin_left = 3
+custom_constants/margin_bottom = 0
+
+[node name="HBox" type="HBoxContainer" parent="TitleMargin"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 341.0
+margin_bottom = 26.0
+
+[node name="Title" type="Label" parent="TitleMargin/HBox"]
+margin_top = 4.0
+margin_right = 338.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+text = "KEYS"
+align = 1
+
+[node name="FilterMargin" type="MarginContainer" parent="."]
+margin_top = 30.0
+margin_right = 344.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 0, 26 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_constants/margin_right = 3
+custom_constants/margin_top = 3
+custom_constants/margin_left = 3
+custom_constants/margin_bottom = 0
+
+[node name="HBox" type="HBoxContainer" parent="FilterMargin"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 341.0
+margin_bottom = 27.0
+
+[node name="Filter" type="LineEdit" parent="FilterMargin/HBox"]
+margin_right = 338.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+placeholder_text = "Filter"

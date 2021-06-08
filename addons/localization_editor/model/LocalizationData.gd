@@ -18,6 +18,7 @@ var data_remaps: Dictionary = {"remapkeys": []}
 var data_filter_remaps: Dictionary = {}
 
 var data_placeholders: Dictionary = {}
+var data_placeholders_default: bool = false 
 var data_filter_placeholders: Dictionary = {}
 
 const uuid_gen = preload("res://addons/localization_editor/uuid/uuid.gd")
@@ -454,6 +455,13 @@ func data_filter_remaps_put(type: String, filter: String) -> void:
 	data_filter_remaps[type] = filter
 	emit_signal("data_changed")
 
+func data_filter_placeholders_by_type(type: String) -> String:
+	return data_filter_placeholders[type] if data_filter_remaps.has(type) else ""
+
+func data_filter_placeholders_put(type: String, filter: String) -> void:
+	data_filter_placeholders[type] = filter
+	emit_signal("data_changed")
+
 # ***** REMAPS *****
 func remaps() -> Array:
 	return data_remaps.remapkeys
@@ -687,7 +695,7 @@ func init_data_placeholders() -> void:
 #		var save_data = load(default_path_to_placeholders) as LocalizationPlaceholdersData
 #		if save_data:
 #			if save_data.placeholders and not save_data.placeholders.empty():
-#
+
 
 func calc_placeholders() -> Dictionary:
 	var placeholders = {}

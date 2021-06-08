@@ -19,7 +19,7 @@ func set_v_scroll(value: int) -> void:
 
 func set_data(data: LocalizationData) -> void:
 	_data = data
-	#_head_ui.set_data("keys", _data)
+	_head_ui.set_data("keys", _data)
 	_init_connections()
 	_update_view()
 
