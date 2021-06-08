@@ -78,7 +78,7 @@ __meta__ = {
 
 [node name="Translations" parent="VBox/Tabs" instance=ExtResource( 3 )]
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 34.0
 margin_right = -4.0
 margin_bottom = -4.0
 
@@ -101,7 +101,7 @@ visible = false
 margin_left = 4.0
 margin_top = 32.0
 margin_right = -4.0
-margin_bottom = -4.0
+margin_bottom = -6.0
 
 [node name="AutoTranslate" parent="VBox/Tabs" instance=ExtResource( 7 )]
 visible = false

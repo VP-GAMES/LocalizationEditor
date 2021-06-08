@@ -53,6 +53,7 @@ func get_data() -> LocalizationData:
 func _load_data() -> void:
 	_data.init_data_translations()
 	_data.init_data_remaps()
+	_data.init_data_placeholders()
 
 func _data_to_childs() -> void:
 	_translations_ui.set_data(_data)

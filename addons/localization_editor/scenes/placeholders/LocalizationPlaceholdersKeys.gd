@@ -9,7 +9,7 @@ onready var _head_ui = $VBox/Head
 onready var _scroll_ui = $VBox/Scroll
 onready var _keys_ui = $VBox/Scroll/Keys
 
-const LocalizationKey = preload("res://addons/localization_editor/scenes/translations/LocalizationTranslationsKey.tscn")
+const LocalizationKey = preload("res://addons/localization_editor/scenes/placeholders/LocalizationPlaceholdersKey.tscn")
 
 func get_v_scroll() -> int:
 	return _scroll_ui.get_v_scroll()
@@ -37,10 +37,10 @@ func _clear_view() -> void:
 		key_ui.queue_free()
 
 func _draw_view() -> void:
-	for key in _data.keys_filtered():
+	for key in _data.placeholders_filtered().keys():
 		_draw_key(key)
 
 func _draw_key(key) -> void:
 	var key_ui = LocalizationKey.instance()
 	_keys_ui.add_child(key_ui)
-	#key_ui.set_data(key, _data)
+	key_ui.set_data(key, _data)

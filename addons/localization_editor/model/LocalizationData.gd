@@ -17,10 +17,14 @@ var _locales_selected: bool setget  locales_selected_put, locales_selected
 var data_remaps: Dictionary = {"remapkeys": []}
 var data_filter_remaps: Dictionary = {}
 
+var data_placeholders: Dictionary = {}
+var data_filter_placeholders: Dictionary = {}
+
 const uuid_gen = preload("res://addons/localization_editor/uuid/uuid.gd")
 
 const default_path = "res://localization/"
 const default_path_to_file = default_path + "localizations.csv"
+const default_path_to_placeholders = default_path + "Placeholders.tres"
 const AUTHOR = "# @author Vladimir Petrenko\n"
 const SETTINGS_PATH_TO_FILE = "localization_editor/locales_path_to_file"
 const SETTINGS_LOCALES_VISIBILITY = "localization_editor/locales_visibility"
@@ -670,6 +674,38 @@ func remap_type(remap) -> String:
 
 func supported_file_extensions() -> Array:
 	return ["ogg", "wav", "mp3", "bmp", "dds", "exr", "hdr", "jpg", "jpeg", "png", "tga", "svg", "svgz", "webp", "webm", "o"]
+
+# ***** PLACEHOLDERS *****
+
+func init_data_placeholders() -> void:
+	var  placeholders = calc_placeholders()
+	for key in placeholders.keys():
+		if not data_placeholders.has(key):
+			data_placeholders[key] = placeholders[key]
+#	var file = File.new()
+#	if file.file_exists(default_path_to_placeholders):
+#		var save_data = load(default_path_to_placeholders) as LocalizationPlaceholdersData
+#		if save_data:
+#			if save_data.placeholders and not save_data.placeholders.empty():
+#
+
+func calc_placeholders() -> Dictionary:
+	var placeholders = {}
+	var regex = RegEx.new()
+	regex.compile("{{(.+?)}}")
+	for key in data.keys:
+		for index in range(key.translations.size()):
+			var results = regex.search_all(key.translations[index].value)
+			for result in results:
+				var name = result.get_string()
+				var clean_name = name.replace("{{", "");
+				clean_name = clean_name.replace("}}", "");
+				if not placeholders.has(name):
+					placeholders[clean_name] = {"default": ""}
+	return placeholders
+
+func placeholders_filtered() -> Dictionary:
+	return data_placeholders
 
 # ***** EDITOR SETTINGS *****
 signal settings_changed
