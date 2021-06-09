@@ -709,7 +709,10 @@ func calc_placeholders() -> Dictionary:
 				var clean_name = name.replace("{{", "");
 				clean_name = clean_name.replace("}}", "");
 				if not placeholders.has(name):
-					placeholders[clean_name] = {"default": ""}
+					var placeholder = {}
+					for locale in data.locales:
+						placeholder[locale] = ""
+					placeholders[clean_name] = placeholder
 	return placeholders
 
 func placeholders_filtered() -> Dictionary:
@@ -720,11 +723,11 @@ func placeholders_filtered() -> Dictionary:
 	return placeholders
 
 func _filter_by_placeholderkeys() -> Array:
-	var placeholderkeys = []
+	var placeholders = {}
 	for placeholderkey in data_placeholders.keys():
 		if not data_filter_placeholders.has("placeholderkeys") or data_filter_placeholders["placeholderkeys"] == "" or placeholderkey == null or placeholderkey == "" or data_filter_placeholders["placeholderkeys"] in placeholderkey:
-			placeholderkeys.append(placeholderkey)
-	return placeholderkeys
+			placeholders[placeholderkey] = data_placeholders[placeholderkey]
+	return placeholders
 
 # ***** EDITOR SETTINGS *****
 signal settings_changed

@@ -15,7 +15,7 @@ onready var _placeholders_list_ui = $Split/Placeholders/Scroll/Placeholders
 func set_data(data: LocalizationData) -> void:
 	_data = data
 	_keys_ui.set_data(data)
-	#_placeholders_ui.set_data(data)
+	_placeholders_ui.set_data(data)
 	_init_connections()
 
 func _init_connections() -> void:
