@@ -18,7 +18,6 @@ var data_remaps: Dictionary = {"remapkeys": []}
 var data_filter_remaps: Dictionary = {}
 
 var data_placeholders: Dictionary = {}
-var data_placeholders_default: bool = false 
 var data_filter_placeholders: Dictionary = {}
 
 const uuid_gen = preload("res://addons/localization_editor/uuid/uuid.gd")
@@ -74,6 +73,7 @@ func save_data_translations(update_script_classes = false) -> void:
 	_save_data_translations_csv()
 	_save_data_translations_keys()
 	_save_data_translations_placeholders()
+	_save_data_placeholders()
 	_save_data_translations_to_project_settings()
 	if update_script_classes:
 		_editor.get_editor_interface().get_resource_filesystem().update_script_classes()
@@ -147,6 +147,11 @@ func _save_data_translations_placeholders() -> void:
 	source_code += "\n]"
 	file.store_string(source_code)
 	file.close()
+
+func _save_data_placeholders() -> void:
+	var placeholders_data = LocalizationPlaceholdersData.new()
+	placeholders_data.placeholders = data_placeholders
+	ResourceSaver.save(default_path_to_placeholders, placeholders_data)
 
 func _save_data_translations_to_project_settings() -> void:
 	var file = setting_path_to_file()
@@ -690,12 +695,12 @@ func init_data_placeholders() -> void:
 	for key in placeholders.keys():
 		if not data_placeholders.has(key):
 			data_placeholders[key] = placeholders[key]
-#	var file = File.new()
-#	if file.file_exists(default_path_to_placeholders):
-#		var save_data = load(default_path_to_placeholders) as LocalizationPlaceholdersData
-#		if save_data:
-#			if save_data.placeholders and not save_data.placeholders.empty():
-
+	var file = File.new()
+	if file.file_exists(default_path_to_placeholders):
+		var resource = ResourceLoader.load(default_path_to_placeholders)
+		if resource and resource.placeholders and not resource.placeholders.empty():
+			for key in resource.placeholders.keys():
+					data_placeholders[key] = resource.placeholders[key]
 
 func calc_placeholders() -> Dictionary:
 	var placeholders = {}
