@@ -19,7 +19,7 @@ func set_v_scroll(value: int) -> void:
 
 func set_data(data: LocalizationData) -> void:
 	_data = data
-	_head_ui.set_data("keys", _data)
+	_head_ui.set_data("placeholderkeys", _data)
 	_init_connections()
 	_update_view()
 
@@ -37,7 +37,7 @@ func _clear_view() -> void:
 		key_ui.queue_free()
 
 func _draw_view() -> void:
-	for key in _data.placeholders_filtered().keys():
+	for key in _data.placeholders_filtered():
 		_draw_key(key)
 
 func _draw_key(key) -> void:

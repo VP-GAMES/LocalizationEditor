@@ -27,7 +27,7 @@ func _draw_view() -> void:
 
 func _filter_changed_action(filter) -> void:
 	_filter = filter
-	_data.data_filter_put(_type, _filter)
+	_data.data_filter_placeholders_put(_type, _filter)
 
 func set_title(text: String) -> void:
 	_title_ui.text = text

@@ -713,7 +713,18 @@ func calc_placeholders() -> Dictionary:
 	return placeholders
 
 func placeholders_filtered() -> Dictionary:
-	return data_placeholders
+	var placeholders = _filter_by_placeholderkeys()
+#	for filter_placeholderkey in data_filter_placeholders.keys():
+#		if filter_placeholderkey != "placeholderkeys":
+#			placeholders = _placeholderkey_filter_by_placeholders(placeholders, filter_placeholderkey)
+	return placeholders
+
+func _filter_by_placeholderkeys() -> Array:
+	var placeholderkeys = []
+	for placeholderkey in data_placeholders.keys():
+		if not data_filter_placeholders.has("placeholderkeys") or data_filter_placeholders["placeholderkeys"] == "" or placeholderkey == null or placeholderkey == "" or data_filter_placeholders["placeholderkeys"] in placeholderkey:
+			placeholderkeys.append(placeholderkey)
+	return placeholderkeys
 
 # ***** EDITOR SETTINGS *****
 signal settings_changed
