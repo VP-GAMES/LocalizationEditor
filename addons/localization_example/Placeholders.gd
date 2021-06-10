@@ -58,7 +58,7 @@ func _update_translation_from_manager() -> void:
 
 func _on_apply_pressed() -> void:
 	var index = _placeholder_ui.get_selected_id()
-	var placeholder = "{{" + _placeholders[index] +"}}"
+	var placeholder = _placeholders[index]
 	var value = _value_ui.text
 	_localization_manager.set_placeholder(placeholder, value)
 
