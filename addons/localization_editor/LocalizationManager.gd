@@ -32,15 +32,22 @@ func _load_localization_keys() -> void:
 			clean_name = clean_name.replace("}}", "");
 			_add_placeholder(_localization_key, clean_name)
 
-func _add_placeholder(key: String, placeholder: String) -> void:
+func _add_placeholder(key: String, placeholder_key: String) -> void:
 	if not _keys_with_placeholder.has(key):
 		_keys_with_placeholder[key] = []
-	var placeholders = _keys_with_placeholder[key] as Array
-	if not placeholders.has(placeholder):
-		placeholders.append(placeholder)
+	var placeholder_keys = _keys_with_placeholder[key] as Array
+	if not placeholder_keys.has(placeholder_key):
+		placeholder_keys.append(placeholder_key)
 
-func set_placeholder(name: String, value: String) -> void:
-	_placeholders[name] = value
+func set_placeholder(name: String, value: String, locale: String = "", profile: String = "DEFAULT") -> void:
+	var loc = locale
+	if loc.empty():
+		loc == TranslationServer.get_locale()
+	if not _placeholders.has(profile):
+		_placeholders[profile] = {}
+	if not _placeholders[profile].has(name):
+		_placeholders[profile][name] = {}
+	_placeholders[profile][name][loc] = value
 	emit_signal("translation_changed")
 
 func tr(name: String) -> String:
@@ -68,9 +75,9 @@ func _load_localization():
 	if file.file_exists(_path_to_save):
 		var save_data = load(_path_to_save) as LocalizationSave
 		if save_data:
-			if save_data.placeholders and not save_data.placeholders.empty():
-				for key in save_data.placeholders.keys():
-					_placeholders[key] = save_data.placeholders[key]
+#			if save_data.placeholders and not save_data.placeholders.empty():
+#				for key in save_data.placeholders.keys():
+#					_placeholders[key] = save_data.placeholders[key]
 			if save_data.locale and not save_data.locale.empty():
 				TranslationServer.set_locale(save_data.locale)
 
