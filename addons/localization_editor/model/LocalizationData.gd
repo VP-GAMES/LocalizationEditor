@@ -689,7 +689,6 @@ func supported_file_extensions() -> Array:
 	return ["ogg", "wav", "mp3", "bmp", "dds", "exr", "hdr", "jpg", "jpeg", "png", "tga", "svg", "svgz", "webp", "webm", "o"]
 
 # ***** PLACEHOLDERS *****
-
 func init_data_placeholders() -> void:
 	var  placeholders = calc_placeholders()
 	for key in placeholders.keys():
@@ -722,10 +721,18 @@ func calc_placeholders() -> Dictionary:
 
 func placeholders_filtered() -> Dictionary:
 	var placeholders = _filter_by_placeholderkeys()
-#	for filter_placeholderkey in data_filter_placeholders.keys():
-#		if filter_placeholderkey != "placeholderkeys":
-#			placeholders = _placeholderkey_filter_by_placeholders(placeholders, filter_placeholderkey)
+	for filter_placeholderkey in data_filter_placeholders.keys():
+		if filter_placeholderkey != "placeholderkeys":
+			placeholders = _key_filter_by_placeholders(placeholders, filter_placeholderkey)
 	return placeholders
+
+func _key_filter_by_placeholders(placeholders, locale) -> Dictionary:
+	var new_placeholders = {}
+	for placeholderkey in placeholders.keys():
+		var value = placeholders[placeholderkey][locale]
+		if data_filter_placeholders[locale] == "" or data_filter_placeholders[locale] in value:
+			new_placeholders[placeholderkey] = placeholders[placeholderkey]
+	return new_placeholders
 
 func _filter_by_placeholderkeys() -> Array:
 	var placeholders = {}
