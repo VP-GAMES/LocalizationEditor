@@ -6,11 +6,20 @@ signal translation_changed
 
 var _path_to_save = "user://localization.tres"
 var _keys_with_placeholder: Dictionary = {}
+var _placeholders_default: Dictionary = {}
 var _placeholders: Dictionary = {}
 
 func _ready() -> void:
+	_load_placeholders_default()
 	_load_localization_keys()
 	_load_localization()
+
+func _load_placeholders_default() -> void:
+	var file = File.new()
+	if file.file_exists(LocalizationData.default_path_to_placeholders):
+		var resource = ResourceLoader.load(LocalizationData.default_path_to_placeholders)
+		if resource and resource.placeholders and not resource.placeholders.empty():
+			_placeholders_default = resource.placeholders
 
 func _load_localization_keys() -> void:
 	var regex = RegEx.new()
@@ -18,7 +27,10 @@ func _load_localization_keys() -> void:
 	for _localization_key in LocalizationKeys.KEYS:
 		var results = regex.search_all(tr(_localization_key))
 		for result in results:
-			_add_placeholder(_localization_key, result.get_string())
+			var name = result.get_string()
+			var clean_name = name.replace("{{", "");
+			clean_name = clean_name.replace("}}", "");
+			_add_placeholder(_localization_key, clean_name)
 
 func _add_placeholder(key: String, placeholder: String) -> void:
 	if not _keys_with_placeholder.has(key):
@@ -35,9 +47,15 @@ func tr(name: String) -> String:
 	var tr_text = .tr(name)
 	if _keys_with_placeholder.has(name):
 		for placeholder in _keys_with_placeholder[name]:
-			if _placeholders.has(placeholder):
-				tr_text = tr_text.replace(placeholder, _placeholders[placeholder])
+			tr_text = tr_text.replace("{{" + placeholder + "}}", _placeholder_by_key(placeholder))
 	return tr_text
+
+func  _placeholder_by_key(key: String) -> String:
+	var value = ""
+#	TODO saved value here
+	if value.empty() and _placeholders_default.has(key) and _placeholders_default[key].has(TranslationServer.get_locale()):
+		value = _placeholders_default[key][TranslationServer.get_locale()]
+	return value
 
 func _notification(what):
 	match what:

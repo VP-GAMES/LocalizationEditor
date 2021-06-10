@@ -6,13 +6,13 @@
 script = ExtResource( 1 )
 placeholders = {
 "NAME": {
-"de": "",
-"en": "Tesst",
-"ru": ""
+"de": "Johan",
+"en": "John",
+"ru": "Ваня"
 },
 "OLD": {
-"de": "",
-"en": "",
-"ru": ""
+"de": "16",
+"en": "17",
+"ru": "18"
 }
 }
