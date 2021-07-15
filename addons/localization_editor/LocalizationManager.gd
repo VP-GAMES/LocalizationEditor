@@ -10,9 +10,9 @@ var _placeholders_default: Dictionary = {}
 var _placeholders: Dictionary = {}
 
 func _ready() -> void:
+	_load_localization()
 	_load_placeholders_default()
 	_load_localization_keys()
-	_load_localization()
 
 func _load_placeholders_default() -> void:
 	var file = File.new()
