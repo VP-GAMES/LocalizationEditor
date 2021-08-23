@@ -4,4 +4,7 @@
 margin_right = 600.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 600, 300 )
+window_title = "Open a File"
+resizable = true
+mode = 0
 filters = PoolStringArray( "*.csv" )
