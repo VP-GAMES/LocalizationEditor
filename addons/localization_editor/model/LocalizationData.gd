@@ -734,7 +734,7 @@ func _key_filter_by_placeholders(placeholders, locale) -> Dictionary:
 			new_placeholders[placeholderkey] = placeholders[placeholderkey]
 	return new_placeholders
 
-func _filter_by_placeholderkeys() -> Array:
+func _filter_by_placeholderkeys() -> Dictionary:
 	var placeholders = {}
 	for placeholderkey in data_placeholders.keys():
 		if not data_filter_placeholders.has("placeholderkeys") or data_filter_placeholders["placeholderkeys"] == "" or placeholderkey == null or placeholderkey == "" or data_filter_placeholders["placeholderkeys"] in placeholderkey:
