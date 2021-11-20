@@ -46,7 +46,7 @@ translations=PoolStringArray( "res://localization/localizations.en.translation",
 [application]
 
 config/name="LocalizationEditor"
-run/main_scene="res://addons/localization_example/Localization.tscn"
+run/main_scene="res://addons/localization_example/Placeholders.tscn"
 config/icon="res://icon.png"
 
 [autoload]
