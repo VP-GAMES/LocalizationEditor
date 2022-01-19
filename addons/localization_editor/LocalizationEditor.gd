@@ -30,6 +30,12 @@ func _ready() -> void:
 	_tabs_ui.set_tab_icon(2, IconResourceLocales)
 	_tabs_ui.set_tab_icon(3, IconResourcePlaceholders)
 	_tabs_ui.set_tab_icon(4, IconResourceTranslation)
+	_tabs_ui.connect("tab_changed", self, "_on_tab_changed")
+
+func _on_tab_changed(idx: int) -> void:
+	if idx == 3:
+		_data.init_data_placeholders()
+		_data.emit_signal_data_changed()
 
 func set_editor(editor: EditorPlugin) -> void:
 	_editor = editor

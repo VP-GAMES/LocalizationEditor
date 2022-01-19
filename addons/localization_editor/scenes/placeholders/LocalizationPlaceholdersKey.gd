@@ -6,7 +6,14 @@ extends MarginContainer
 var _key
 var _data: LocalizationData
 
+onready var _del_ui = $HBoxContainer/Del as Button
 onready var _key_ui = $HBoxContainer/Key as LineEdit
+
+func _ready() -> void:
+	_del_ui.connect("pressed", self, "_on_del_pressed")
+
+func _on_del_pressed() -> void:
+	_data.del_placeholder(_key)
 
 func key():
 	return _key

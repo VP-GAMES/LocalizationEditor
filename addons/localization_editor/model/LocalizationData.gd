@@ -738,6 +738,26 @@ func _filter_by_placeholderkeys() -> Dictionary:
 			placeholders[placeholderkey] = data_placeholders[placeholderkey]
 	return placeholders
 
+func del_placeholder(key: String, emitSignal = true) -> void:
+	if _undo_redo != null:
+		var placeholder = data_placeholders[key]
+		_undo_redo.create_action("Del _del_placeholder " + key)
+		_undo_redo.add_do_method(self, "_del_placeholder", key)
+		_undo_redo.add_undo_method(self, "_add_placeholder", key, placeholder)
+		_undo_redo.commit_action()
+	else:
+		_del_placeholder(key)
+
+func _del_placeholder(key: String, emitSignal = true) -> void:
+	data_placeholders.erase(key)
+	if emitSignal:
+		emit_signal("data_changed")
+
+func _add_placeholder(key: String, placeholder, emitSignal = true):
+	data_placeholders[key] = placeholder
+	if emitSignal:
+		emit_signal("data_changed")
+
 # ***** EDITOR SETTINGS *****
 signal settings_changed
 
