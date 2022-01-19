@@ -36,8 +36,6 @@ func _ready() -> void:
 func _init_connections() -> void:
 	if connect("gui_input", self, "_line_edit_gui_input") != OK:
 		push_warning("_popup_panel gui_input not connected")
-	if connect("text_changed", self, "_on_text_changed") != OK:
-		push_warning("_popup_panel text_changed not connected")
  
 func _popup_panel_focus_entered() -> void:
 	grab_focus()
@@ -52,6 +50,9 @@ func _line_edit_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_MASK_LEFT and not event.pressed:
 			_update_popup_view()
+			if not is_connected("text_changed", self, "_on_text_changed"):
+				if connect("text_changed", self, "_on_text_changed") != OK:
+					push_warning("_popup_panel text_changed not connected")
 
 func _on_text_changed(filter: String) -> void:
 	_filter = filter
