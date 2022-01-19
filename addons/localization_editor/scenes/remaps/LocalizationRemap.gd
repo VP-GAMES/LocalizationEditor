@@ -7,7 +7,6 @@ var _key
 var _remap
 var _data: LocalizationData
 
-onready var _put_ui = $HBox/Put
 onready var _remap_ui = $HBox/Remap
 onready var _audio_ui = $HBox/Audio
 onready var _video_ui = $HBox/Video
@@ -20,7 +19,6 @@ func set_data(key, remap, data: LocalizationData) -> void:
 	_key = key
 	_remap = remap
 	_data = data
-	_put_ui.set_data(key, remap, data)
 	_remap_ui.set_data(key, remap, data)
 	_init_connections()
 	_draw_view()

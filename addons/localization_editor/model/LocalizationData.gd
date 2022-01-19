@@ -471,9 +471,6 @@ func data_filter_placeholders_put(type: String, filter: String) -> void:
 func remaps() -> Array:
 	return data_remaps.remapkeys
 
-func remaps_keys_filtered() -> Array:
-	return data_remaps.remapkeys
-
 func init_data_remaps() -> void:
 	data_remaps.remapkeys = []
 	if ProjectSettings.has_setting("locale/translation_remaps"):
@@ -680,13 +677,13 @@ func remap_type(remap) -> String:
 			return "audio"
 		"bmp", "dds", "exr", "hdr", "jpg", "jpeg", "png", "tga", "svg", "svgz", "webp":
 			return "image"
-		"webm", "o":
+		"webm", "o", "ogv":
 			return "video"
 		_:
 			return "undefined"
 
 func supported_file_extensions() -> Array:
-	return ["ogg", "wav", "mp3", "bmp", "dds", "exr", "hdr", "jpg", "jpeg", "png", "tga", "svg", "svgz", "webp", "webm", "o"]
+	return ["ogg", "ogv", "wav", "mp3", "bmp", "dds", "exr", "hdr", "jpg", "jpeg", "png", "tga", "svg", "svgz", "webp", "webm", "o"]
 
 # ***** PLACEHOLDERS *****
 func init_data_placeholders() -> void:

@@ -1,6 +1,5 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://addons/localization_example/Data/Video/video_en.webm" type="VideoStream" id=1]
 [ext_resource path="res://addons/localization_example/Data/Audio/hello_en.ogg" type="AudioStream" id=2]
 [ext_resource path="res://addons/localization_example/Data/Images/play_en.png" type="Texture" id=3]
 [ext_resource path="res://addons/localization_example/Localization.gd" type="Script" id=4]
@@ -129,7 +128,6 @@ margin_left = -1.0
 margin_top = -1.0
 margin_right = -1.0
 margin_bottom = -1.0
-stream = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
