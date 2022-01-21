@@ -9,6 +9,7 @@ const LocalizationMain = preload("res://addons/localization_editor/LocalizationE
 var _localization_main
 
 func _enter_tree():
+	add_autoload_singleton("LocalizationManager", "res://addons/localization_editor/LocalizationManager.gd")
 	_localization_main = LocalizationMain.instance()
 	_localization_main.name = "LocalizationEditor"
 	get_editor_interface().get_editor_viewport().add_child(_localization_main)
@@ -16,6 +17,7 @@ func _enter_tree():
 	make_visible(false)
 
 func _exit_tree():
+	remove_autoload_singleton("LocalizationManager")
 	if _localization_main:
 		_localization_main.queue_free()
 
