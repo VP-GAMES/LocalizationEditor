@@ -5,7 +5,10 @@ extends MarginContainer
 
 var _data: LocalizationData
 var _locales_google: Array = []
-
+var _data_keys: Array = []
+var _queries_count: int = 0
+var _from_code: String
+var _to_code: String
 
 onready var _from_language_ui = $Panel/VBox/HBox/FromLanguage
 onready var _to_language_ui = $Panel/VBox/HBox/ToLanguage
@@ -53,22 +56,32 @@ func _check_translate_ui() -> void:
 	_translate_ui.set_disabled(_from_language_ui.selected == -1 or _to_language_ui.selected == -1)
 
 func _on_translate_pressed() -> void:
-	var from_language_code = _data.locales()[_from_language_ui.selected]
-	var to_language_code = _locales_google[_to_language_ui.selected]
-	_translate(from_language_code, to_language_code)
+	_from_code = _data.locales()[_from_language_ui.selected]
+	_to_code = _locales_google[_to_language_ui.selected]
+	_translate()
 
-func _translate(from_code: String, to_code: String) -> void:
+func _translate() -> void:
 	_translate_ui.disabled = true
 	_progress_ui.max_value = _data.keys().size()
-	if not _data.locales().has(to_code):
-		_data.add_locale(to_code, false)
-	for key in _data.keys():
-		var from_translation = _data.translation_by_locale(key, from_code)
-		var to_translation = _data.translation_by_locale(key, to_code)
+	if not _data.locales().has(_to_code):
+		_data.add_locale(_to_code, false)
+
+	_data_keys = _data.keys().duplicate()
+	_create_requests()
+
+func _create_requests() -> void:
+	var space = IP.RESOLVER_MAX_QUERIES - _queries_count
+	for index in range(space):
+		if _data_keys.size() <= 0:
+			return
+		var from_translation = _data.translation_by_locale(_data_keys[0], _from_code)
+		var to_translation = _data.translation_by_locale(_data_keys[0], _to_code)
 		if from_translation != null and not from_translation.value.empty() and (to_translation.value == null or to_translation.value.empty()):
 			_create_request(from_translation, to_translation)
 		else:
 			_add_progress()
+		_data_keys.remove(0)
+		_queries_count += 1
 
 func _create_request(from_translation, to_translation) -> void:
 	var url = _create_url(from_translation, to_translation)
@@ -91,6 +104,8 @@ func http_request_completed(result, response_code, headers, body, http_request, 
 	to_translation.value = result_body.result[0][0][0]
 	_add_progress()
 	remove_child(http_request)
+	_queries_count -= 1
+	_create_requests()
 
 func _add_progress() -> void:
 	_progress_ui.value = _progress_ui.value + 1
