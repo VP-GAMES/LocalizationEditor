@@ -101,7 +101,14 @@ func _create_url(from_translation, to_translation) -> String:
 
 func http_request_completed(result, response_code, headers, body, http_request, to_translation):
 	var result_body := JSON.parse(body.get_string_from_utf8())
-	to_translation.value = result_body.result[0][0][0]
+	if result_body.result != null:
+		var value = ""
+		for index in range(result_body.result[0].size()):
+			if index == 0:
+				value = result_body.result[0][index][0]
+			else:
+				value += " " + result_body.result[0][index][0]
+		to_translation.value = value
 	_add_progress()
 	remove_child(http_request)
 	_queries_count -= 1
